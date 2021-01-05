@@ -1,14 +1,12 @@
-﻿using System;
+﻿using Rocky.Models.Common;
+using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Rocky.Models
 {
-    public class Product
+    public class Product : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         public string Name { get; set; }
         public string ShortDescription { get; set; }
@@ -25,6 +23,5 @@ namespace Rocky.Models
         public int ApplicationTypeId { get; set; }
         [ForeignKey("ApplicationTypeId")]
         public virtual ApplicationType ApplicationType { get; set; }
-
     }
 }
