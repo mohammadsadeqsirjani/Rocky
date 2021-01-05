@@ -87,10 +87,12 @@ namespace Rocky.Controllers
         public IActionResult DeletePost(int? id)
         {
             var applicationType = _db.ApplicationTypes.Find(id);
+
             if (applicationType == null)
                 return NotFound();
             _db.ApplicationTypes.Remove(applicationType);
             _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }
