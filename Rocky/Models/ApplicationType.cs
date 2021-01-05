@@ -1,12 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Rocky.Models.Common;
+using System.Collections.Generic;
 
 namespace Rocky.Models
 {
-    public class ApplicationType
+    public class ApplicationType : BaseEntity
     {
-        [Key]
-        public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
+
+        public List<Product> Products { get; set; }
     }
 }
