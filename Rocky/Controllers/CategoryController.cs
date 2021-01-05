@@ -22,7 +22,6 @@ namespace Rocky.Controllers
             return View(objList);
         }
 
-
         public IActionResult Create()
         {
             return View();
@@ -33,9 +32,12 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category category)
         {
-            if (!ModelState.IsValid) return View(category);
+            if (!ModelState.IsValid)
+                return View(category);
+
             _db.Categories.Add(category);
             _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -43,9 +45,12 @@ namespace Rocky.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
+
             var category = _db.Categories.Find(id);
+
             if (category == null)
                 return NotFound();
+
             return View(category);
         }
 
@@ -53,9 +58,12 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Category obj)
         {
-            if (!ModelState.IsValid) return View(obj);
+            if (!ModelState.IsValid)
+                return View(obj);
+
             _db.Categories.Update(obj);
             _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
@@ -63,7 +71,9 @@ namespace Rocky.Controllers
         {
             if (id == null || id == 0)
                 return NotFound();
+
             var category = _db.Categories.Find(id);
+
             if (category == null)
                 return NotFound();
 
@@ -75,10 +85,13 @@ namespace Rocky.Controllers
         public IActionResult DeletePost(int? id)
         {
             var category = _db.Categories.Find(id);
+
             if (category == null)
                 return NotFound();
+
             _db.Categories.Remove(category);
             _db.SaveChanges();
+
             return RedirectToAction("Index");
         }
     }
