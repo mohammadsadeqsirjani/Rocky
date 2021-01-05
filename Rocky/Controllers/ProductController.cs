@@ -37,15 +37,15 @@ namespace Rocky.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            var productVm = new ProductVM
+            var productVm = new ProductVm
             {
                 Product = new Product(),
-                CategorySelectList = _db.Categories.Select(i => new SelectListItem
+                Categories = _db.Categories.Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
                 }),
-                ApplicationTypeSelectList = _db.ApplicationTypes.Select(i => new SelectListItem
+                ApplicationTypes = _db.ApplicationTypes.Select(i => new SelectListItem
                 {
                     Text = i.Name,
                     Value = i.Id.ToString()
@@ -56,6 +56,7 @@ namespace Rocky.Controllers
                 return View(productVm);
 
             productVm.Product = _db.Products.Find(id);
+
             if (productVm.Product == null)
                 return NotFound();
 
@@ -64,83 +65,84 @@ namespace Rocky.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Upsert(ProductVM productVm)
+        public IActionResult Upsert(ProductVm productVm)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var files = HttpContext.Request.Form.Files;
-                var webRootPath = _webHostEnvironment.WebRootPath;
+                productVm.Categories = _db.Categories.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
 
-                if (productVm.Product.Id == 0)
+                productVm.ApplicationTypes = _db.ApplicationTypes.Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                });
+
+                return View(productVm);
+            }
+
+            var files = HttpContext.Request.Form.Files;
+            var webRootPath = _webHostEnvironment.WebRootPath;
+
+            if (productVm.Product.Id == 0)
+            {
+                var upload = webRootPath + WebConstant.ImagePath;
+                var fileName = Guid.NewGuid().ToString();
+                var extension = Path.GetExtension(files[0].FileName);
+
+                using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
+                    files[0].CopyTo(fileStream);
+
+                productVm.Product.Picture = fileName + extension;
+
+                _db.Products.Add(productVm.Product);
+            }
+            else
+            {
+                var product = _db.Products.AsNoTracking().FirstOrDefault(u => u.Id == productVm.Product.Id);
+
+                if (files.Any())
                 {
                     var upload = webRootPath + WebConstant.ImagePath;
                     var fileName = Guid.NewGuid().ToString();
                     var extension = Path.GetExtension(files[0].FileName);
 
+                    var oldFile = Path.Combine(upload, product.Picture);
+
+                    if (System.IO.File.Exists(oldFile))
+                        System.IO.File.Delete(oldFile);
+
                     using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
-                    {
                         files[0].CopyTo(fileStream);
-                    }
 
                     productVm.Product.Picture = fileName + extension;
-
-                    _db.Products.Add(productVm.Product);
                 }
                 else
                 {
-                    var objFromDb = _db.Products.AsNoTracking().FirstOrDefault(u => u.Id == productVm.Product.Id);
-
-                    if (files.Count > 0)
-                    {
-                        var upload = webRootPath + WebConstant.ImagePath;
-                        var fileName = Guid.NewGuid().ToString();
-                        var extension = Path.GetExtension(files[0].FileName);
-
-                        var oldFile = Path.Combine(upload, objFromDb.Picture);
-
-                        if (System.IO.File.Exists(oldFile))
-                        {
-                            System.IO.File.Delete(oldFile);
-                        }
-
-                        using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
-                            files[0].CopyTo(fileStream);
-
-                        productVm.Product.Picture = fileName + extension;
-                    }
-                    else
-                    {
-                        productVm.Product.Picture = objFromDb.Picture;
-                    }
-
-                    _db.Products.Update(productVm.Product);
+                    productVm.Product.Picture = product.Picture;
                 }
 
-                _db.SaveChanges();
-                return RedirectToAction("Index");
+                _db.Products.Update(productVm.Product);
             }
-            productVm.CategorySelectList = _db.Categories.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-            productVm.ApplicationTypeSelectList = _db.ApplicationTypes.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-            return View(productVm);
 
+            _db.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
                 return NotFound();
+
             var product = _db.Products
                 .Include(u => u.Category)
                 .Include(u => u.ApplicationType)
                 .FirstOrDefault(u => u.Id == id);
+
             if (product == null)
                 return NotFound();
 
@@ -152,6 +154,7 @@ namespace Rocky.Controllers
         public IActionResult DeletePost(int? id)
         {
             var product = _db.Products.Find(id);
+
             if (product == null)
                 return NotFound();
 
