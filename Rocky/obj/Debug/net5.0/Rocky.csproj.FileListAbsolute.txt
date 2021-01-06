@@ -1375,14 +1375,7 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Views.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Views.pdb
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\AutoMapper.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Collection.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Configuration.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Configuration.ObjectFactory.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Core.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Guard.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Immutable.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Serialization.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Cactus.Blade.Threading.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\FluentValidation.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\FluentValidation.AspNetCore.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\FluentValidation.DependencyInjectionExtensions.dll
@@ -1513,3 +1506,4 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.Data.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.IoC.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.IoC.pdb
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.Data.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
