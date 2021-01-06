@@ -21,3 +21,11 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\obj\Debug\net5.0\Rocky.Infra.IoC.c
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\obj\Debug\net5.0\Rocky.Infra.IoC.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\obj\Debug\net5.0\ref\Rocky.Infra.IoC.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\obj\Debug\net5.0\Rocky.Infra.IoC.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\obj\Debug\net5.0\Rocky.Infra.IoC.csprojAssemblyReference.cache
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\bin\Debug\net5.0\Rocky.Application.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\bin\Debug\net5.0\Rocky.Domain.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\bin\Debug\net5.0\Rocky.Application.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\bin\Debug\net5.0\Rocky.Domain.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\obj\Debug\net5.0\Rocky.Infra.IoC.csproj.CopyComplete
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\bin\Debug\net5.0\Rocky.Infra.Data.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.IoC\bin\Debug\net5.0\Rocky.Infra.Data.pdb

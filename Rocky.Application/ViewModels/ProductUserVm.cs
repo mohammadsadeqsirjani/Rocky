@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Rocky.Application.Dtos.Product;
+using Rocky.Domain.Entities;
+using System.Collections.Generic;
 
 namespace Rocky.Application.ViewModels
 {
@@ -6,10 +8,10 @@ namespace Rocky.Application.ViewModels
     {
         public ProductUserVm()
         {
-            ProductList = new List<Product>();
+            Products = new List<ProductGetDto>();
         }
 
         public ApplicationUser ApplicationUser { get; set; }
-        public IList<Product> ProductList { get; set; }
+        public IList<ProductGetDto> Products { get; set; }
     }
 }

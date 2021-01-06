@@ -1,12 +1,15 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using Rocky.Application.Dtos.Product;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
-using Rocky.Data;
 using Rocky.Domain.Entities;
+using Rocky.Infra.Data.Persistence;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,14 +25,16 @@ namespace Rocky.Controllers
         private readonly ApplicationDbContext _db;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
+        private readonly IMapper _mapper;
 
         [BindProperty]
         public ProductUserVm ProductUserVm { get; set; }
-        public CartController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender)
+        public CartController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper)
         {
             _db = db;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -56,14 +61,19 @@ namespace Rocky.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
             var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
-            var prodInCart = shoppingCarts.Select(i => i.ProductId).ToList();
+            var productsInCart = shoppingCarts.Select(i => i.ProductId).ToList();
 
-            IEnumerable<Product> prodList = _db.Products.Where(u => prodInCart.Contains(u.Id));
+            IEnumerable<Product> products = _db.Products
+                .Include(p => p.Category)
+                .Include(p => p.ApplicationType)
+                .Where(u => productsInCart.Contains(u.Id));
+
+            var productDtos = _mapper.Map<List<ProductGetDto>>(products);
 
             ProductUserVm = new ProductUserVm
             {
                 ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value),
-                ProductList = prodList.ToList()
+                Products = productDtos
             };
 
             return View(ProductUserVm);
@@ -81,7 +91,7 @@ namespace Rocky.Controllers
             using (var streamReader = System.IO.File.OpenText(pathToTemplate)) htmlBody = await streamReader.ReadToEndAsync();
 
             var builder = new StringBuilder();
-            foreach (var prod in productUserVm.ProductList)
+            foreach (var prod in productUserVm.Products)
                 builder.Append(
                     $" - Name: {prod.Name} <span style='font-size:14px;'> (ID: {prod.Id})</span><br />");
 

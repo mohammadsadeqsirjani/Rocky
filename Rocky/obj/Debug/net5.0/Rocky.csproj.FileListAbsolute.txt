@@ -1405,7 +1405,6 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.CodeAnalysis.Work
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
@@ -1510,3 +1509,7 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Domain.pdb
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Rocky.Views.pdb
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Rocky.csproj.CopyComplete
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Rocky.genruntimeconfig.cache
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.Data.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.IoC.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.IoC.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Rocky.Infra.Data.pdb

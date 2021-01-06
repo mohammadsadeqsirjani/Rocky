@@ -6,21 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
-    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
     <PackageReference Include="Cactus.Blade.Core" Version="1.2.5" />
     <PackageReference Include="Cactus.Blade.Serialization" Version="1.2.2" />
-    <PackageReference Include="FluentValidation" Version="9.3.0" />
-    <PackageReference Include="FluentValidation.AspNetCore" Version="9.3.0" />
-    <PackageReference Include="Mailjet.Api" Version="2.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.1">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="5.0.1" />
   </ItemGroup>
 
@@ -31,6 +21,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Rocky.Application\Rocky.Application.csproj" />
     <ProjectReference Include="..\Rocky.Domain\Rocky.Domain.csproj" />
+    <ProjectReference Include="..\Rocky.Infra.IoC\Rocky.Infra.IoC.csproj" />
   </ItemGroup>
 
 </Project>

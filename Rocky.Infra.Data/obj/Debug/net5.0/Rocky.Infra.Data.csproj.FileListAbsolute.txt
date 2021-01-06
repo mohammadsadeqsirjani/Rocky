@@ -22,3 +22,9 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\obj\Debug\net5.0\ref\Rocky.Infra.Data.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\bin\Debug\net5.0\Rocky.Infra.Data.runtimeconfig.json
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\bin\Debug\net5.0\Rocky.Infra.Data.runtimeconfig.dev.json
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\bin\Debug\net5.0\Rocky.Domain.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\bin\Debug\net5.0\Rocky.Domain.pdb
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.csproj.CopyComplete
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.genruntimeconfig.cache

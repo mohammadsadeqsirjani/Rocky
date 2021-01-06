@@ -4,14 +4,105 @@
     "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj": {}
   },
   "projects": {
-    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj": {
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj",
-        "projectName": "Rocky.Infra.IoC",
-        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj",
+        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj",
+        "projectName": "Rocky.Application",
+        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj",
         "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
-        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\obj\\",
+        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj": {
+                "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "FluentValidation": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[9.3.0, )"
+            },
+            "Mailjet.Api": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.Extensions.Configuration.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[12.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj",
+        "projectName": "Rocky.Domain",
+        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +130,12 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -50,6 +147,166 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj",
+        "projectName": "Rocky.Infra.Data",
+        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj": {
+                "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj",
+        "projectName": "Rocky.Infra.IoC",
+        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj": {
+                "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj"
+              },
+              "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj": {
+                "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.0, )"
+            },
+            "Cactus.Blade.Core": {
+              "target": "Package",
+              "version": "[1.2.5, )"
+            },
+            "Microsoft.Extensions.Configuration": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            },
+            "Microsoft.Extensions.DependencyInjection": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
