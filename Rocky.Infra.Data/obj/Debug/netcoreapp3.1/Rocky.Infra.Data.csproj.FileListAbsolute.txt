@@ -1,0 +1,9 @@
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\bin\Debug\netcoreapp3.1\Rocky.Infra.Data.deps.json
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\bin\Debug\netcoreapp3.1\Rocky.Infra.Data.dll
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\bin\Debug\netcoreapp3.1\Rocky.Infra.Data.pdb
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\obj\Debug\netcoreapp3.1\Rocky.Infra.Data.csprojAssemblyReference.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\obj\Debug\netcoreapp3.1\Rocky.Infra.Data.AssemblyInfoInputs.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\obj\Debug\netcoreapp3.1\Rocky.Infra.Data.AssemblyInfo.cs
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\obj\Debug\netcoreapp3.1\Rocky.Infra.Data.csproj.CoreCompileInputs.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\obj\Debug\netcoreapp3.1\Rocky.Infra.Data.dll
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.Data\obj\Debug\netcoreapp3.1\Rocky.Infra.Data.pdb

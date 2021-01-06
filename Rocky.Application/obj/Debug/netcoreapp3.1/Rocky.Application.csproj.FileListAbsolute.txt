@@ -1,0 +1,9 @@
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\bin\Debug\netcoreapp3.1\Rocky.Application.deps.json
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\bin\Debug\netcoreapp3.1\Rocky.Application.dll
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\bin\Debug\netcoreapp3.1\Rocky.Application.pdb
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\obj\Debug\netcoreapp3.1\Rocky.Application.csprojAssemblyReference.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\obj\Debug\netcoreapp3.1\Rocky.Application.AssemblyInfoInputs.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\obj\Debug\netcoreapp3.1\Rocky.Application.AssemblyInfo.cs
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\obj\Debug\netcoreapp3.1\Rocky.Application.csproj.CoreCompileInputs.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\obj\Debug\netcoreapp3.1\Rocky.Application.dll
+D:\Job\Code\C#\Demo\Rocky\Rocky.Application\obj\Debug\netcoreapp3.1\Rocky.Application.pdb

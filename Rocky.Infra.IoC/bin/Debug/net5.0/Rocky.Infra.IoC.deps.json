@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "Rocky.Infra.IoC/1.0.0": {
+        "runtime": {
+          "Rocky.Infra.IoC.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Rocky.Infra.IoC/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

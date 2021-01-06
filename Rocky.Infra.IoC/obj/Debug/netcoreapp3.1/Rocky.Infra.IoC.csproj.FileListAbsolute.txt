@@ -1,0 +1,9 @@
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\bin\Debug\netcoreapp3.1\Rocky.Infra.IoC.deps.json
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\bin\Debug\netcoreapp3.1\Rocky.Infra.IoC.dll
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\bin\Debug\netcoreapp3.1\Rocky.Infra.IoC.pdb
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\obj\Debug\netcoreapp3.1\Rocky.Infra.IoC.csprojAssemblyReference.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\obj\Debug\netcoreapp3.1\Rocky.Infra.IoC.AssemblyInfoInputs.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\obj\Debug\netcoreapp3.1\Rocky.Infra.IoC.AssemblyInfo.cs
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\obj\Debug\netcoreapp3.1\Rocky.Infra.IoC.csproj.CoreCompileInputs.cache
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\obj\Debug\netcoreapp3.1\Rocky.Infra.IoC.dll
+D:\Job\Code\C#\Demo\Rocky\Rocky.Infra.IoC\obj\Debug\netcoreapp3.1\Rocky.Infra.IoC.pdb
