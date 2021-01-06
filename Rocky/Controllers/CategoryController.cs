@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels.Dtos.Category;
 using Rocky.Domain.Entities;
-using Rocky.Infra.Data.Persistence;
+using Rocky.Domain.Interfaces.Category;
 using System.Collections.Generic;
 
 namespace Rocky.Controllers
@@ -13,22 +13,22 @@ namespace Rocky.Controllers
     [Authorize(Roles = WebConstant.AdminRole)]
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
         private readonly IMapper _mapper;
+        private readonly ICategoryRepository _repository;
         private readonly IValidator<CategoryAddDto> _categoryAddDtoValidator;
         private readonly IValidator<CategoryEditDto> _categoryEditDtoValidator;
 
-        public CategoryController(ApplicationDbContext db, IMapper mapper, IValidator<CategoryAddDto> categoryAddDtoValidator, IValidator<CategoryEditDto> categoryEditDtoValidator)
+        public CategoryController(IMapper mapper, IValidator<CategoryAddDto> categoryAddDtoValidator, IValidator<CategoryEditDto> categoryEditDtoValidator, ICategoryRepository repository)
         {
-            _db = db;
             _mapper = mapper;
             _categoryAddDtoValidator = categoryAddDtoValidator;
             _categoryEditDtoValidator = categoryEditDtoValidator;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Category> categories = _db.Categories;
+            IEnumerable<Category> categories = _repository.Select();
 
             var categoryDtos = _mapper.Map<IEnumerable<CategoryGetDto>>(categories);
 
@@ -39,7 +39,6 @@ namespace Rocky.Controllers
         {
             return View();
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -52,8 +51,7 @@ namespace Rocky.Controllers
 
             var category = _mapper.Map<Category>(categoryDto);
 
-            _db.Categories.Add(category);
-            _db.SaveChanges();
+            _repository.Add(category);
 
             return RedirectToAction(nameof(Index));
         }
@@ -63,7 +61,7 @@ namespace Rocky.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var category = _db.Categories.Find(id);
+            var category = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (category == null)
                 return NotFound();
@@ -84,8 +82,7 @@ namespace Rocky.Controllers
 
             var category = _mapper.Map<Category>(categoryDto);
 
-            _db.Categories.Update(category);
-            _db.SaveChanges();
+            _repository.Update(category);
 
             return RedirectToAction(nameof(Index));
         }
@@ -95,7 +92,7 @@ namespace Rocky.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var category = _db.Categories.Find(id);
+            var category = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (category == null)
                 return NotFound();
@@ -107,13 +104,12 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var category = _db.Categories.Find(id);
+            var category = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (category == null)
                 return NotFound();
 
-            _db.Categories.Remove(category);
-            _db.SaveChanges();
+            _repository.Delete(category);
 
             return RedirectToAction(nameof(Index));
         }
