@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace Rocky.Areas.Identity.Pages.Account.Manage
 {
@@ -33,10 +30,10 @@ namespace Rocky.Areas.Identity.Pages.Account.Manage
 
         public string Email { get; set; }
 
-        public bool IsEmailConfirmed { get; set; }
+        public bool IsEmailConfirmed { get; private set; }
 
         [TempData]
-        public string StatusMessage { get; set; }
+        public string StatusMessage { get; private set; }
 
         [BindProperty]
         public InputModel Input { get; set; }
@@ -95,9 +92,9 @@ namespace Rocky.Areas.Identity.Pages.Account.Manage
                 var code = await _userManager.GenerateChangeEmailTokenAsync(user, Input.NewEmail);
                 var callbackUrl = Url.Page(
                     "/Account/ConfirmEmailChange",
-                    pageHandler: null,
-                    values: new { userId = userId, email = Input.NewEmail, code = code },
-                    protocol: Request.Scheme);
+                    null,
+                    new { userId, email = Input.NewEmail, code },
+                    Request.Scheme);
                 await _emailSender.SendEmailAsync(
                     Input.NewEmail,
                     "Confirm your email",
@@ -131,9 +128,9 @@ namespace Rocky.Areas.Identity.Pages.Account.Manage
             code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
             var callbackUrl = Url.Page(
                 "/Account/ConfirmEmail",
-                pageHandler: null,
-                values: new { area = "Identity", userId = userId, code = code },
-                protocol: Request.Scheme);
+                null,
+                new { area = "Identity", userId, code },
+                Request.Scheme);
             await _emailSender.SendEmailAsync(
                 email,
                 "Confirm your email",

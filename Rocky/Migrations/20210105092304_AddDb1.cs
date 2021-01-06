@@ -7,75 +7,75 @@ namespace Rocky.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Product_ApplicationType_ApplicationTypeId",
-                table: "Product");
+                "FK_Product_ApplicationType_ApplicationTypeId",
+                "Product");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Product_Category_CategoryId",
-                table: "Product");
+                "FK_Product_Category_CategoryId",
+                "Product");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Product",
-                table: "Product");
+                "PK_Product",
+                "Product");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Category",
-                table: "Category");
+                "PK_Category",
+                "Category");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_ApplicationType",
-                table: "ApplicationType");
+                "PK_ApplicationType",
+                "ApplicationType");
 
             migrationBuilder.RenameTable(
-                name: "Product",
+                "Product",
                 newName: "Products");
 
             migrationBuilder.RenameTable(
-                name: "Category",
+                "Category",
                 newName: "Categories");
 
             migrationBuilder.RenameTable(
-                name: "ApplicationType",
+                "ApplicationType",
                 newName: "ApplicationTypes");
 
             migrationBuilder.RenameIndex(
-                name: "IX_Product_CategoryId",
+                "IX_Product_CategoryId",
                 table: "Products",
                 newName: "IX_Products_CategoryId");
 
             migrationBuilder.RenameIndex(
-                name: "IX_Product_ApplicationTypeId",
+                "IX_Product_ApplicationTypeId",
                 table: "Products",
                 newName: "IX_Products_ApplicationTypeId");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Products",
-                table: "Products",
-                column: "Id");
+                "PK_Products",
+                "Products",
+                "Id");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Categories",
-                table: "Categories",
-                column: "Id");
+                "PK_Categories",
+                "Categories",
+                "Id");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_ApplicationTypes",
-                table: "ApplicationTypes",
-                column: "Id");
+                "PK_ApplicationTypes",
+                "ApplicationTypes",
+                "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Products_ApplicationTypes_ApplicationTypeId",
-                table: "Products",
-                column: "ApplicationTypeId",
-                principalTable: "ApplicationTypes",
+                "FK_Products_ApplicationTypes_ApplicationTypeId",
+                "Products",
+                "ApplicationTypeId",
+                "ApplicationTypes",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Products_Categories_CategoryId",
-                table: "Products",
-                column: "CategoryId",
-                principalTable: "Categories",
+                "FK_Products_Categories_CategoryId",
+                "Products",
+                "CategoryId",
+                "Categories",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
@@ -83,75 +83,75 @@ namespace Rocky.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_ApplicationTypes_ApplicationTypeId",
-                table: "Products");
+                "FK_Products_ApplicationTypes_ApplicationTypeId",
+                "Products");
 
             migrationBuilder.DropForeignKey(
-                name: "FK_Products_Categories_CategoryId",
-                table: "Products");
+                "FK_Products_Categories_CategoryId",
+                "Products");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Products",
-                table: "Products");
+                "PK_Products",
+                "Products");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_Categories",
-                table: "Categories");
+                "PK_Categories",
+                "Categories");
 
             migrationBuilder.DropPrimaryKey(
-                name: "PK_ApplicationTypes",
-                table: "ApplicationTypes");
+                "PK_ApplicationTypes",
+                "ApplicationTypes");
 
             migrationBuilder.RenameTable(
-                name: "Products",
+                "Products",
                 newName: "Product");
 
             migrationBuilder.RenameTable(
-                name: "Categories",
+                "Categories",
                 newName: "Category");
 
             migrationBuilder.RenameTable(
-                name: "ApplicationTypes",
+                "ApplicationTypes",
                 newName: "ApplicationType");
 
             migrationBuilder.RenameIndex(
-                name: "IX_Products_CategoryId",
+                "IX_Products_CategoryId",
                 table: "Product",
                 newName: "IX_Product_CategoryId");
 
             migrationBuilder.RenameIndex(
-                name: "IX_Products_ApplicationTypeId",
+                "IX_Products_ApplicationTypeId",
                 table: "Product",
                 newName: "IX_Product_ApplicationTypeId");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Product",
-                table: "Product",
-                column: "Id");
+                "PK_Product",
+                "Product",
+                "Id");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_Category",
-                table: "Category",
-                column: "Id");
+                "PK_Category",
+                "Category",
+                "Id");
 
             migrationBuilder.AddPrimaryKey(
-                name: "PK_ApplicationType",
-                table: "ApplicationType",
-                column: "Id");
+                "PK_ApplicationType",
+                "ApplicationType",
+                "Id");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Product_ApplicationType_ApplicationTypeId",
-                table: "Product",
-                column: "ApplicationTypeId",
-                principalTable: "ApplicationType",
+                "FK_Product_ApplicationType_ApplicationTypeId",
+                "Product",
+                "ApplicationTypeId",
+                "ApplicationType",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Product_Category_CategoryId",
-                table: "Product",
-                column: "CategoryId",
-                principalTable: "Category",
+                "FK_Product_Category_CategoryId",
+                "Product",
+                "CategoryId",
+                "Category",
                 principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }

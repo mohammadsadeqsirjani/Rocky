@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Rocky.Data;
 using Rocky.Models;
 using Rocky.Models.ViewModels;
@@ -13,12 +12,10 @@ namespace Rocky.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger, ApplicationDbContext db)
+        public HomeController(ApplicationDbContext db)
         {
-            _logger = logger;
             _db = db;
         }
 
@@ -36,7 +33,7 @@ namespace Rocky.Controllers
 
         public IActionResult Details(int id)
         {
-            var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
+            var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
 
             var detailsVm = new DetailsVm
             {
@@ -56,7 +53,7 @@ namespace Rocky.Controllers
         [HttpPost, ActionName("Details")]
         public IActionResult DetailsPost(int id)
         {
-            var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart).ToList() ?? new List<ShoppingCart>();
+            var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
 
             shoppingCarts.Add(new ShoppingCart { ProductId = id });
 
@@ -67,7 +64,7 @@ namespace Rocky.Controllers
 
         public IActionResult RemoveFromCart(int id)
         {
-            var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart).ToList() ?? new List<ShoppingCart>();
+            var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart).ToList() ?? new List<ShoppingCart>();
 
             var itemToRemove = shoppingCarts.FirstOrDefault(r => r.ProductId == id);
 

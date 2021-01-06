@@ -7,17 +7,17 @@ namespace Rocky.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "Image",
-                table: "Products",
-                newName: "Picture");
+                "Image",
+                "Products",
+                "Picture");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.RenameColumn(
-                name: "Picture",
-                table: "Products",
-                newName: "Image");
+                "Picture",
+                "Products",
+                "Image");
         }
     }
 }
