@@ -1,16 +1,15 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Rocky.Application.Dtos.Category;
+using Rocky.Application.Dtos.Product;
+using Rocky.Application.Utilities;
+using Rocky.Application.ViewModels;
 using Rocky.Data;
-using Rocky.Dto.Category;
-using Rocky.Dto.Product;
-using Rocky.Utility;
-using Rocky.ViewModels;
+using Rocky.Domain.Entities;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using Rocky.Application.Utilities;
-using Rocky.Domain.Entities;
 
 namespace Rocky.Controllers
 {

@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Rocky.Domain.Entities;
-using Rocky.Dto.ApplicationType;
 
-namespace Rocky.Profiles
+namespace Rocky.Application.Mappers.Profiles
 {
     public class ApplicationTypeProfile : Profile
     {

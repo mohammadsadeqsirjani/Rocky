@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using System.Threading.Tasks;
 
-namespace Rocky.Utility
+namespace Rocky.Application.Utilities
 {
     public class EmailSender : IEmailSender
     {

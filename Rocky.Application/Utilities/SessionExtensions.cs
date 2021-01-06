@@ -1,7 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using System.Text.Json;
+﻿using System.Text.Json;
+using Microsoft.AspNetCore.Http;
 
-namespace Rocky.Utility
+namespace Rocky.Application.Utilities
 {
     public static class SessionExtensions
     {

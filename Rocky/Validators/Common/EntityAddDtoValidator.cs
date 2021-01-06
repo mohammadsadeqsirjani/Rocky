@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Rocky.Dto.Common;
+using Rocky.Application.Dtos.Common;
 
 namespace Rocky.Validators.Common
 {

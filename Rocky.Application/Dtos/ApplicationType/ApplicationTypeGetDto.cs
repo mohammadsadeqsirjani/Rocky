@@ -1,6 +1,6 @@
-﻿using Rocky.Dto.Common;
+﻿using Rocky.Application.Dtos.Common;
 
-namespace Rocky.Dto.ApplicationType
+namespace Rocky.Application.Dtos.ApplicationType
 {
     public class ApplicationTypeGetDto : EntityGetDto
     {

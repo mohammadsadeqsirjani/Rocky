@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using Rocky.Dto.ApplicationType;
+using Rocky.Application.Dtos.ApplicationType;
 using Rocky.Validators.Common;
 
 namespace Rocky.Validators.ApplicationType

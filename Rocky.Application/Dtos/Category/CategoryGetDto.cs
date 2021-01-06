@@ -1,7 +1,7 @@
-﻿using Rocky.Dto.Common;
+﻿using Rocky.Application.Dtos.Common;
 using System.ComponentModel;
 
-namespace Rocky.Dto.Category
+namespace Rocky.Application.Dtos.Category
 {
     public class CategoryGetDto : EntityGetDto
     {

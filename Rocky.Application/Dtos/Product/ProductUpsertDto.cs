@@ -1,9 +1,8 @@
-﻿using Rocky.Dto.Common;
-using System.ComponentModel;
+﻿using Rocky.Application.Dtos.Common;
 
-namespace Rocky.Dto.Product
+namespace Rocky.Application.Dtos.Product
 {
-    public class ProductGetDto : EntityGetDto
+    public class ProductUpsertDto : EntityEditDto
     {
         public string Name { get; set; }
         public string ShortDescription { get; set; }
@@ -12,12 +11,5 @@ namespace Rocky.Dto.Product
         public string Picture { get; set; }
         public int CategoryId { get; set; }
         public int ApplicationTypeId { get; set; }
-
-        [DisplayName("Caegogry Type")]
-        public string CategoryType { get; set; }
-
-        [DisplayName("Application Type")]
-        public string ApplicationType { get; set; }
-
     }
 }

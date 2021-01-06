@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Rocky.Dto.Product;
+using Rocky.Application.Dtos.Product;
 using System.Collections.Generic;
 
-namespace Rocky.ViewModels
+namespace Rocky.Application.ViewModels
 {
     public class ProductVm
     {

@@ -2,11 +2,11 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Rocky.Data;
-using Rocky.Dto.ApplicationType;
-using System.Collections.Generic;
+using Rocky.Application.Dtos.ApplicationType;
 using Rocky.Application.Utilities;
+using Rocky.Data;
 using Rocky.Domain.Entities;
+using System.Collections.Generic;
 
 namespace Rocky.Controllers
 {

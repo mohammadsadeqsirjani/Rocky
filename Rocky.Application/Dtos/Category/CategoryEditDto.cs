@@ -1,6 +1,6 @@
-﻿using Rocky.Dto.Common;
+﻿using Rocky.Application.Dtos.Common;
 
-namespace Rocky.Dto.Category
+namespace Rocky.Application.Dtos.Category
 {
     public class CategoryEditDto : EntityEditDto
     {

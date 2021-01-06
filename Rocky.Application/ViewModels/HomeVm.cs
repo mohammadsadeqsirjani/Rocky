@@ -1,8 +1,8 @@
-﻿using Rocky.Dto.Category;
-using Rocky.Dto.Product;
+﻿using Rocky.Application.Dtos.Category;
+using Rocky.Application.Dtos.Product;
 using System.Collections.Generic;
 
-namespace Rocky.ViewModels
+namespace Rocky.Application.ViewModels
 {
     public class HomeVm
     {

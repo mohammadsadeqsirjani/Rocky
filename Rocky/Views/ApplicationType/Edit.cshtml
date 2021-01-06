@@ -1,4 +1,4 @@
-﻿@model Rocky.Dto.ApplicationType.ApplicationTypeEditDto
+﻿@model Rocky.Application.Dtos.ApplicationType.ApplicationTypeEditDto
 
 <form method="post">
     <input asp-for="Id" hidden />
@@ -43,7 +43,6 @@
 @section Scripts{
 
     @{
-                        <partial name="_ValidationScriptsPartial" />
-    }
+                        <partial name="_ValidationScriptsPartial" /> }
 
 }

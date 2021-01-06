@@ -5,15 +5,15 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Rocky.Application.Dtos.Product;
+using Rocky.Application.Utilities;
+using Rocky.Application.ViewModels;
 using Rocky.Data;
-using Rocky.Dto.Product;
-using Rocky.ViewModels;
+using Rocky.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Rocky.Application.Utilities;
-using Rocky.Domain.Entities;
 
 namespace Rocky.Controllers
 {

@@ -1,4 +1,4 @@
-namespace Rocky.ViewModels
+namespace Rocky.Application.ViewModels
 {
     public class ErrorViewModel
     {

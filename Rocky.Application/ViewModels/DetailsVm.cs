@@ -1,6 +1,6 @@
-﻿using Rocky.Dto.Product;
+﻿using Rocky.Application.Dtos.Product;
 
-namespace Rocky.ViewModels
+namespace Rocky.Application.ViewModels
 {
     public class DetailsVm
     {

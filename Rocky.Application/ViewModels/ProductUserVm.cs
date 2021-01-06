@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using Rocky.Domain.Entities;
 
-namespace Rocky.ViewModels
+namespace Rocky.Application.ViewModels
 {
     public class ProductUserVm
     {
