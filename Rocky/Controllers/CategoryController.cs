@@ -109,7 +109,7 @@ namespace Rocky.Controllers
             if (category == null)
                 return NotFound();
 
-            _repository.Delete(category);
+            _repository.Delete(id.GetValueOrDefault());
 
             return RedirectToAction(nameof(Index));
         }

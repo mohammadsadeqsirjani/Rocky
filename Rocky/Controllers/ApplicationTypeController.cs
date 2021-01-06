@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels.Dtos.ApplicationType;
 using Rocky.Domain.Entities;
-using Rocky.Infra.Data.Persistence;
+using Rocky.Domain.Interfaces.ApplicationType;
 using System.Collections.Generic;
 
 namespace Rocky.Controllers
@@ -14,22 +14,22 @@ namespace Rocky.Controllers
     [Authorize(Roles = WebConstant.AdminRole)]
     public class ApplicationTypeController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IApplicationTypeRepository _repository;
         private readonly IMapper _mapper;
         private readonly IValidator<ApplicationTypeAddDto> _applicationTypeAddDtoValidator;
         private readonly IValidator<ApplicationTypeEditDto> _applicationTypeEditDtoValidator;
 
-        public ApplicationTypeController(ApplicationDbContext db, IMapper mapper, IValidator<ApplicationTypeAddDto> applicationTypeAddDtoValidator, IValidator<ApplicationTypeEditDto> applicationTypeEditDtoValidator)
+        public ApplicationTypeController(IMapper mapper, IValidator<ApplicationTypeAddDto> applicationTypeAddDtoValidator, IValidator<ApplicationTypeEditDto> applicationTypeEditDtoValidator, IApplicationTypeRepository repository)
         {
-            _db = db;
             _mapper = mapper;
             _applicationTypeAddDtoValidator = applicationTypeAddDtoValidator;
             _applicationTypeEditDtoValidator = applicationTypeEditDtoValidator;
+            _repository = repository;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<ApplicationType> applicationTypes = _db.ApplicationTypes;
+            IEnumerable<ApplicationType> applicationTypes = _repository.Select();
 
             var applicationTypeDtos = _mapper.Map<IEnumerable<ApplicationTypeGetDto>>(applicationTypes);
 
@@ -52,8 +52,7 @@ namespace Rocky.Controllers
 
             var applicationType = _mapper.Map<ApplicationType>(applicationTypeDto);
 
-            _db.ApplicationTypes.Add(applicationType);
-            _db.SaveChanges();
+            _repository.Add(applicationType);
 
             return RedirectToAction(nameof(Index));
         }
@@ -63,7 +62,7 @@ namespace Rocky.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var applicationType = _db.ApplicationTypes.Find(id);
+            var applicationType = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             var applicationTypeDto = _mapper.Map<ApplicationTypeEditDto>(applicationType);
 
@@ -84,10 +83,9 @@ namespace Rocky.Controllers
 
             var applicationType = _mapper.Map<ApplicationType>(applicationTypeDto);
 
-            _db.ApplicationTypes.Update(applicationType);
-            _db.SaveChanges();
+            _repository.Update(applicationType);
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Delete(int? id)
@@ -95,7 +93,7 @@ namespace Rocky.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var applicationType = _db.ApplicationTypes.Find(id);
+            var applicationType = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (applicationType == null)
                 return NotFound();
@@ -107,13 +105,12 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var applicationType = _db.ApplicationTypes.Find(id);
+            var applicationType = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (applicationType == null)
                 return NotFound();
 
-            _db.ApplicationTypes.Remove(applicationType);
-            _db.SaveChanges();
+            _repository.Delete(id.GetValueOrDefault());
 
             return RedirectToAction("Index");
         }

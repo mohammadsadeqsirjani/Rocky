@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.DependencyInjection;
 using Rocky.Application.Utilities;
+using Rocky.Domain.Interfaces.ApplicationType;
 using Rocky.Domain.Interfaces.Category;
 using Rocky.Domain.Interfaces.Common;
+using Rocky.Infra.Data.Repositories.ApplicationType;
 using Rocky.Infra.Data.Repositories.Category;
 using Rocky.Infra.Data.Repositories.Common;
 
@@ -17,6 +19,9 @@ namespace Rocky.Infra.IoC.Extensions
 
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<ICategoryAsyncRepository, CategoryAsyncRepository>();
+
+            services.AddScoped<IApplicationTypeRepository, ApplicationTypeRepository>();
+            services.AddScoped<IApplicationTypeAsyncRepository, ApplicationTypeAsyncRepository>();
 
             services.AddTransient<IEmailSender, EmailSender>();
 
