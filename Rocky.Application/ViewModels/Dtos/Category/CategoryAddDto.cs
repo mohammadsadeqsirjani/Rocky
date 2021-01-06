@@ -1,6 +1,6 @@
-﻿using Rocky.Application.Dtos.Common;
+﻿using Rocky.Application.ViewModels.Dtos.Common;
 
-namespace Rocky.Application.Dtos.Category
+namespace Rocky.Application.ViewModels.Dtos.Category
 {
     public class CategoryAddDto : EntityAddDto
     {

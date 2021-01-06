@@ -1,4 +1,4 @@
-﻿namespace Rocky.Application.Dtos.Common
+﻿namespace Rocky.Application.ViewModels.Dtos.Common
 {
     public class EntityEditDto
     {

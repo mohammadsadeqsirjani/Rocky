@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Rocky.Application.Dtos.Category;
-using Rocky.Application.Dtos.Product;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
+using Rocky.Application.ViewModels.Dtos.Category;
+using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
 using Rocky.Infra.Data.Persistence;
 using System.Collections.Generic;

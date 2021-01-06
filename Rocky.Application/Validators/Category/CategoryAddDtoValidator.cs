@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Rocky.Application.Dtos.Category;
 using Rocky.Application.Validators.Common;
+using Rocky.Application.ViewModels.Dtos.Category;
 
 namespace Rocky.Application.Validators.Category
 {

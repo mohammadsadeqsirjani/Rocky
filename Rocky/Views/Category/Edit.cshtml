@@ -1,4 +1,4 @@
-﻿@model Rocky.Application.Dtos.Category.CategoryEditDto
+﻿@model Rocky.Application.ViewModels.Dtos.Category.CategoryEditDto
 
 <form method="post">
     <input asp-for="Id" hidden />
@@ -52,7 +52,6 @@
 @section Scripts{
 
     @{
-                        <partial name="_ValidationScriptsPartial" />
-    }
+                        <partial name="_ValidationScriptsPartial" /> }
 
 }

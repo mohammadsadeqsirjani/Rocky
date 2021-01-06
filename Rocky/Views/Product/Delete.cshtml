@@ -1,5 +1,5 @@
 ﻿@using Rocky.Application.Utilities
-@model Rocky.Application.Dtos.Product.ProductGetDto
+@model Rocky.Application.ViewModels.Dtos.Product.ProductGetDto
 
 
 <form method="post">
@@ -88,8 +88,7 @@
 @section Scripts{
 
     @{
-                        <partial name="_ValidationScriptsPartial" />
-    }
+                        <partial name="_ValidationScriptsPartial" /> }
     <script>
         $(document).ready(function () {
             $('.summernote').summernote({

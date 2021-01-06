@@ -1,6 +1,6 @@
-﻿using Rocky.Application.Dtos.Common;
+﻿using Rocky.Application.ViewModels.Dtos.Common;
 
-namespace Rocky.Application.Dtos.Product
+namespace Rocky.Application.ViewModels.Dtos.Product
 {
     public class ProductUpsertDto : EntityEditDto
     {

@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using Rocky.Application.Dtos.Product;
 using Rocky.Application.Validators.Common;
+using Rocky.Application.ViewModels.Dtos.Product;
 
 namespace Rocky.Application.Validators.Product
 {

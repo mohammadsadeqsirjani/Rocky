@@ -1,4 +1,4 @@
-﻿using Rocky.Application.Dtos.Product;
+﻿using Rocky.Application.ViewModels.Dtos.Product;
 
 namespace Rocky.Application.ViewModels
 {

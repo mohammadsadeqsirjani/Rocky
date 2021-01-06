@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Rocky.Application.Dtos.Product;
+using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
 
 namespace Rocky.Application.Mappers.Profiles

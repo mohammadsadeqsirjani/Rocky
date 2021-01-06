@@ -1,12 +1,12 @@
 ﻿using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
-using Rocky.Application.Dtos.ApplicationType;
-using Rocky.Application.Dtos.Category;
-using Rocky.Application.Dtos.Product;
 using Rocky.Application.Validators.ApplicationType;
 using Rocky.Application.Validators.Category;
 using Rocky.Application.Validators.Product;
+using Rocky.Application.ViewModels.Dtos.ApplicationType;
+using Rocky.Application.ViewModels.Dtos.Category;
+using Rocky.Application.ViewModels.Dtos.Product;
 
 namespace Rocky.Infra.IoC.Extensions
 {

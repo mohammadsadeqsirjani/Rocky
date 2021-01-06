@@ -1,4 +1,4 @@
-﻿@model Rocky.Application.Dtos.Category.CategoryAddDto
+﻿@model Rocky.Application.ViewModels.Dtos.Category.CategoryAddDto
 
 <form method="post" asp-action="Create">
     <div class="border p-3">
@@ -51,6 +51,7 @@
 @section Scripts{
 
     @{
-                        <partial name="_ValidationScriptsPartial" /> }
+                        <partial name="_ValidationScriptsPartial" />
+    }
 
 }

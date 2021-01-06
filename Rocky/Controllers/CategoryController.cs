@@ -2,8 +2,8 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Rocky.Application.Dtos.Category;
 using Rocky.Application.Utilities;
+using Rocky.Application.ViewModels.Dtos.Category;
 using Rocky.Domain.Entities;
 using Rocky.Infra.Data.Persistence;
 using System.Collections.Generic;

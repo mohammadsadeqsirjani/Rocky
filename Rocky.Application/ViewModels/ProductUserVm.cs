@@ -1,4 +1,4 @@
-﻿using Rocky.Application.Dtos.Product;
+﻿using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
 using System.Collections.Generic;
 

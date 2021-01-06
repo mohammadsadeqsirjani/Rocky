@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Rocky.Application.Dtos.Product;
+using Rocky.Application.ViewModels.Dtos.Product;
 using System.Collections.Generic;
 
 namespace Rocky.Application.ViewModels
