@@ -4,9 +4,9 @@ using Rocky.Domain.Entities;
 
 namespace Rocky.Application.Mappers.Profiles
 {
-    public class InquiryProfile : Profile
+    public class InquiryHeaderProfile : Profile
     {
-        public InquiryProfile()
+        public InquiryHeaderProfile()
         {
             CreateMap<InquiryHeader, InquiryHeaderGetDto>();
         }

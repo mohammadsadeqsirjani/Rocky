@@ -6,5 +6,7 @@ namespace Rocky.Application.ViewModels.Dtos.InquiryDetail
     {
         public int InquiryHeaderId { get; set; }
         public int ProductId { get; set; }
+        public string ProductName { get; set; }
+        public double ProductPrice { get; set; }
     }
 }
