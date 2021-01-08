@@ -5,6 +5,8 @@ using Rocky.Application.Validators.ApplicationType;
 using Rocky.Application.Validators.Category;
 using Rocky.Application.Validators.InquiryHeader;
 using Rocky.Application.Validators.Product;
+using Rocky.Application.Validators.ShoppingCart;
+using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.ApplicationType;
 using Rocky.Application.ViewModels.Dtos.Category;
 using Rocky.Application.ViewModels.Dtos.InquiryHeader;
@@ -25,6 +27,7 @@ namespace Rocky.Infra.IoC.Extensions
             services.AddTransient<IValidator<ProductUpsertDto>, ProductUpsertDtoValidator>();
             services.AddTransient<IValidator<InquiryHeaderAddDto>, InquiryHeaderAddDtoValidator>();
             services.AddTransient<IValidator<InquiryHeaderEditDto>, InquiryHeaderEditDtoValidator>();
+            services.AddTransient<IValidator<DetailsVm>, DetailVmValidator>();
 
             return services;
         }

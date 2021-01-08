@@ -51,9 +51,17 @@ namespace Rocky.Controllers
 
             var productsInCart = shoppingCarts.Select(i => i.ProductId).ToList();
 
-            var products = _productRepository.Select(u => productsInCart.Contains(u.Id));
+            var products = _productRepository.Select(u => productsInCart.Contains(u.Id), p => p.Category,
+                p => p.ApplicationType);
 
-            return View(products);
+            var productDtos = _mapper.Map<List<ProductGetDto>>(products);
+
+            foreach (var productGetDto in productDtos)
+            {
+                productGetDto.Sqft = shoppingCarts.FirstOrDefault(p => p.ProductId == productGetDto.Id).Sqft;
+            }
+
+            return View(productDtos);
         }
 
         [HttpPost]
@@ -131,6 +139,29 @@ namespace Rocky.Controllers
             TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(InquiryConfirmation));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult UpdateCart(IEnumerable<ProductGetDto> productGetDtos)
+        {
+            var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart);
+
+            foreach (var shoppingCart in shoppingCarts)
+            {
+                shoppingCart.Sqft = productGetDtos.FirstOrDefault(f => f.Id == shoppingCart.ProductId).Sqft;
+            }
+
+            HttpContext.Session.Set(WebConstant.SessionCart, shoppingCarts);
+
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Clear()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult InquiryConfirmation()

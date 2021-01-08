@@ -12,6 +12,7 @@ namespace Rocky.Application.ViewModels.Dtos.Product
         public string Picture { get; set; }
         public int CategoryId { get; set; }
         public int ApplicationTypeId { get; set; }
+        public int Sqft { get; set; }
 
         [DisplayName("Caegogry Type")]
         public string CategoryType { get; set; }

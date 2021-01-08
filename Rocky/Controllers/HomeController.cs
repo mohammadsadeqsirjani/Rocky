@@ -58,21 +58,25 @@ namespace Rocky.Controllers
             var detailsVm = new DetailsVm
             {
                 Product = productDto,
+                SqFt = 0,
                 ExistsInCart = false
             };
 
-            foreach (var _ in shoppingCarts.Where(item => item.ProductId == id))
+            foreach (var item in shoppingCarts.Where(item => item.ProductId == id))
+            {
                 detailsVm.ExistsInCart = true;
+                detailsVm.SqFt = item.Sqft;
+            }
 
             return View(detailsVm);
         }
 
         [HttpPost, ActionName("Details")]
-        public IActionResult DetailsPost(int id)
+        public IActionResult DetailsPost(int id, DetailsVm detailsVm)
         {
             var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
 
-            shoppingCarts.Add(new ShoppingCart { ProductId = id });
+            shoppingCarts.Add(new ShoppingCart { ProductId = id, Sqft = detailsVm.SqFt });
 
             HttpContext.Session.Set(WebConstant.SessionCart, shoppingCarts);
             TempData[WebConstant.Succeed] = WebConstant.MissionComplete;

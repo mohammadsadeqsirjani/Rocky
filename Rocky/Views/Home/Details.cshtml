@@ -1,6 +1,5 @@
 ﻿@using Rocky.Application.Utilities
 @model Rocky.Application.ViewModels.DetailsVm
-
 <div class="">
     <form method="post">
         <input asp-for="@Model.Product.Id" hidden />
@@ -18,7 +17,7 @@
                     <div class="container rounded p-2">
                         <div class="row">
                             <div class="col-12 col-lg-4 p-1 text-center">
-                                <img src="@WebConstant.ImagePath@Model.Product.Picture" width="100%" class="rounded" />
+                                <img src="@WebConstant.ImagePath@Model.Product.Picture" width="100%" class="rounded" alt="" />
                             </div>
                             <div class="col-12 col-lg-8">
                                 <div class="row pl-3">
@@ -30,7 +29,20 @@
 
                                         <p class="text-secondary">@Html.Raw(Model.Product.Description) </p>
                                     </div>
-
+                                    @if (User.IsInRole(WebConstant.AdminRole))
+                                    {
+                        <div class="col-12">
+                            SqFt:
+                        </div>
+                                        <div class="col-12">
+                                            @if (Model.ExistsInCart)
+                                            {
+                            <input asp-for="@Model.SqFt" disabled class="form-control" /> }
+                        else
+                        {
+        <input asp-for="@Model.SqFt" class="form-control" />}
+                                            <span asp-validation-for="SqFt" class="text-danger"></span>
+                                        </div>}
                                 </div>
                             </div>
                         </div>
