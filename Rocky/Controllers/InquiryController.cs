@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
@@ -12,6 +13,7 @@ using System.Linq;
 
 namespace Rocky.Controllers
 {
+    [Authorize(Roles = WebConstant.AdminRole)]
     public class InquiryController : Controller
     {
         private readonly IInquiryHeaderRepository _inquiryHeaderRepository;
@@ -38,7 +40,10 @@ namespace Rocky.Controllers
             var inquiryDetails = _inquiryDetailRepository.Select(d => d.InquiryHeaderId == id, d => d.Product);
 
             if (inquiryHeader == null)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             var inquiryHeaderDto = _mapper.Map<InquiryHeaderGetDto>(inquiryHeader);
             var inquiryDetailsDto = _mapper.Map<List<InquiryDetailGetDto>>(inquiryDetails);
@@ -68,7 +73,28 @@ namespace Rocky.Controllers
             HttpContext.Session.Set(WebConstant.SessionCart, shoppingCarts);
             HttpContext.Session.Set(WebConstant.SessionInquiryId, InquiryVm.InquiryHeader.Id);
 
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
+
             return RedirectToAction(nameof(Index), "Cart");
+        }
+
+        [HttpPost]
+        public IActionResult Delete()
+        {
+            var inquiryHeader = _inquiryHeaderRepository.FirstOrDefault(f => f.Id == InquiryVm.InquiryHeader.Id);
+
+            if (inquiryHeader.IsNull())
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
+                return NotFound();
+            }
+
+            _inquiryHeaderRepository.Delete(InquiryVm.InquiryHeader.Id);
+            _inquiryDetailRepository.Delete(f => f.InquiryHeaderId == InquiryVm.InquiryHeader.Id);
+
+            HttpContext.Session.Clear();
+
+            return RedirectToAction(nameof(Index));
         }
 
         #region API Calls

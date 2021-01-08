@@ -128,6 +128,7 @@ namespace Rocky.Controllers
             }
 
             _inquiryDetailRepository.SaveChanges();
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(InquiryConfirmation));
         }
@@ -135,6 +136,7 @@ namespace Rocky.Controllers
         public IActionResult InquiryConfirmation()
         {
             HttpContext.Session.Clear();
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
             return View();
         }
 
@@ -145,6 +147,7 @@ namespace Rocky.Controllers
             shoppingCarts.Remove(shoppingCarts.FirstOrDefault(u => u.ProductId == id));
 
             HttpContext.Session.Set(WebConstant.SessionCart, shoppingCarts);
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }

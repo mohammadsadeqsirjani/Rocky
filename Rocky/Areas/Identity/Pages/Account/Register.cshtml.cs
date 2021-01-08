@@ -100,6 +100,7 @@ namespace Rocky.Areas.Identity.Pages.Account
                 {
                     //an admin has logged in and they try to create a new user
                     await _userManager.AddToRoleAsync(user, WebConstant.AdminRole);
+                    TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
                 }
                 else
                 {

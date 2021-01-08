@@ -10,5 +10,11 @@
         public const string CustomerRole = "Customer";
 
         public const string EmailAdmin = "m.sadeq.sirjani@gmail.com";
+
+        public const string Succeed = "Success";
+        public const string Failed = "Failour";
+
+        public const string MissionComplete = "Action complete successfully";
+        public const string MissionFail = "Action fail while doing";
     }
 }

@@ -100,6 +100,16 @@ namespace Rocky.Infra.Data.Repositories.Common
             await DeleteAsync(entity);
         }
 
+        public virtual async Task DeleteAsync(Expression<Func<TEntity, bool>> expression, bool saveAutomatically = true)
+        {
+            var entities = await SelectAsync(expression);
+
+            foreach (var entity in entities) await DeleteAsync(entity, false);
+
+            if (saveAutomatically)
+                await SaveChangesAsync();
+        }
+
         public virtual async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate) => await DbSet.AnyAsync(predicate);
 
         public virtual async Task<bool> ExistsAsync(TKey id) => await ExistsAsync(p => Equals(p.Id, id));

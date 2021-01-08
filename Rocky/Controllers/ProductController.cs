@@ -67,16 +67,19 @@ namespace Rocky.Controllers
             };
 
             if (id == null)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return View(productVm);
+            }
 
             var product = _productRepository.FirstOrDefault(id.GetValueOrDefault());
 
             productVm.Product = _mapper.Map<ProductUpsertDto>(product);
 
-            if (productVm.Product == null)
-                return NotFound();
+            if (productVm.Product != null) return View(productVm);
 
-            return View(productVm);
+            TempData[WebConstant.Failed] = WebConstant.MissionFail;
+            return NotFound();
         }
 
         [HttpPost]
@@ -100,6 +103,8 @@ namespace Rocky.Controllers
                         Text = i.Name,
                         Value = i.Id.ToString()
                     });
+
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
 
                 return View(productVm);
             }
@@ -151,6 +156,7 @@ namespace Rocky.Controllers
             }
 
             _productRepository.SaveChanges();
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }
@@ -158,13 +164,19 @@ namespace Rocky.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             var product = _productRepository.FirstOrDefault(u => u.Id == id.GetValueOrDefault(), p => p.Category,
                 p => p.ApplicationType);
 
             if (product == null)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             var productDto = _mapper.Map<ProductGetDto>(product);
 
@@ -178,7 +190,10 @@ namespace Rocky.Controllers
             var product = _productRepository.FirstOrDefault(id.GetValueOrDefault());
 
             if (product == null)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             var upload = _webHostEnvironment.WebRootPath + WebConstant.ImagePath;
             var oldFile = Path.Combine(upload, product.Picture);
@@ -187,6 +202,7 @@ namespace Rocky.Controllers
                 System.IO.File.Delete(oldFile);
 
             _productRepository.Delete(product);
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }

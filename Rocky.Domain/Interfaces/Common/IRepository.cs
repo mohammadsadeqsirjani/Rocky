@@ -26,6 +26,7 @@ namespace Rocky.Domain.Interfaces.Common
         void Update(TEntity entity, bool saveAutomatically = true);
         void Delete(TEntity entity, bool saveAutomatically = true);
         void Delete(TKey id, bool saveAutomatically = true);
+        void Delete(Expression<Func<TEntity, bool>> expression, bool saveAutomatically = true);
         bool Exists(Expression<Func<TEntity, bool>> predicate);
         bool Exists(TKey id);
         void SaveChanges();

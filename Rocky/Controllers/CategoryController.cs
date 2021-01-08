@@ -28,7 +28,7 @@ namespace Rocky.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Category> categories = _repository.Select();
+            var categories = _repository.Select();
 
             var categoryDtos = _mapper.Map<IEnumerable<CategoryGetDto>>(categories);
 
@@ -47,11 +47,16 @@ namespace Rocky.Controllers
             var validationResult = _categoryAddDtoValidator.Validate(categoryDto);
 
             if (!validationResult.IsValid)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return View(categoryDto);
+            }
 
             var category = _mapper.Map<Category>(categoryDto);
 
             _repository.Add(category);
+
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }
@@ -78,11 +83,16 @@ namespace Rocky.Controllers
             var validationResult = _categoryEditDtoValidator.Validate(categoryDto);
 
             if (!validationResult.IsValid)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return View(categoryDto);
+            }
 
             var category = _mapper.Map<Category>(categoryDto);
 
             _repository.Update(category);
+
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }
@@ -107,9 +117,14 @@ namespace Rocky.Controllers
             var category = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (category == null)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             _repository.Delete(id.GetValueOrDefault());
+
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }

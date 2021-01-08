@@ -26,6 +26,7 @@ namespace Rocky.Domain.Interfaces.Common
         Task UpdateAsync(TEntity entity, bool saveAutomatically = true);
         Task DeleteAsync(TEntity entity, bool saveAutomatically = true);
         Task DeleteAsync(TKey id, bool saveAutomatically = true);
+        Task DeleteAsync(Expression<Func<TEntity, bool>> expression, bool saveAutomatically = true);
         Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate);
         Task<bool> ExistsAsync(TKey id);
         Task SaveChangesAsync();

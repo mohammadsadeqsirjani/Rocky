@@ -101,6 +101,16 @@ namespace Rocky.Infra.Data.Repositories.Common
             Delete(entity);
         }
 
+        public virtual void Delete(Expression<Func<TEntity, bool>> expression, bool saveAutomatically = true)
+        {
+            var entities = Select(expression);
+
+            foreach (var entity in entities) Delete(entity, false);
+
+            if (saveAutomatically)
+                SaveChanges();
+        }
+
         public virtual bool Exists(Expression<Func<TEntity, bool>> predicate) => DbSet.Any(predicate);
 
         public virtual bool Exists(TKey id) => Exists(p => Equals(p.Id, id));

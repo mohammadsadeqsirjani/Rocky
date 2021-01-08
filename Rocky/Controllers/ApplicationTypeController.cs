@@ -29,7 +29,7 @@ namespace Rocky.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<ApplicationType> applicationTypes = _repository.Select();
+            var applicationTypes = _repository.Select();
 
             var applicationTypeDtos = _mapper.Map<IEnumerable<ApplicationTypeGetDto>>(applicationTypes);
 
@@ -48,11 +48,15 @@ namespace Rocky.Controllers
             var validationResult = _applicationTypeAddDtoValidator.Validate(applicationTypeDto);
 
             if (!validationResult.IsValid)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return View(applicationTypeDto);
+            }
 
             var applicationType = _mapper.Map<ApplicationType>(applicationTypeDto);
 
             _repository.Add(applicationType);
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }
@@ -60,16 +64,21 @@ namespace Rocky.Controllers
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             var applicationType = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             var applicationTypeDto = _mapper.Map<ApplicationTypeEditDto>(applicationType);
 
-            if (applicationType == null)
-                return NotFound();
+            if (applicationType != null) return View(applicationTypeDto);
 
-            return View(applicationTypeDto);
+            TempData[WebConstant.Failed] = WebConstant.MissionFail;
+
+            return NotFound();
+
         }
 
         [HttpPost]
@@ -79,11 +88,15 @@ namespace Rocky.Controllers
             var validationResult = _applicationTypeEditDtoValidator.Validate(applicationTypeDto);
 
             if (!validationResult.IsValid)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return View(applicationTypeDto);
+            }
 
             var applicationType = _mapper.Map<ApplicationType>(applicationTypeDto);
 
             _repository.Update(applicationType);
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
             return RedirectToAction(nameof(Index));
         }
@@ -91,14 +104,17 @@ namespace Rocky.Controllers
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             var applicationType = _repository.FirstOrDefault(id.GetValueOrDefault());
 
-            if (applicationType == null)
-                return NotFound();
+            if (applicationType != null) return View(applicationType);
+            TempData[WebConstant.Failed] = WebConstant.MissionFail;
+            return NotFound();
 
-            return View(applicationType);
         }
 
         [HttpPost]
@@ -108,11 +124,15 @@ namespace Rocky.Controllers
             var applicationType = _repository.FirstOrDefault(id.GetValueOrDefault());
 
             if (applicationType == null)
+            {
+                TempData[WebConstant.Failed] = WebConstant.MissionFail;
                 return NotFound();
+            }
 
             _repository.Delete(id.GetValueOrDefault());
+            TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }
