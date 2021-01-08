@@ -4,7 +4,7 @@ using Rocky.Infra.Data.Repositories.Common;
 
 namespace Rocky.Infra.Data.Repositories.ApplicationType
 {
-    public class ApplicationTypeRepository : Repository<Domain.Entities.ApplicationType>, IApplicationTypeRepository
+    public class ApplicationTypeRepository : Repository<Domain.Entities.ApplicationType, int>, IApplicationTypeRepository
     {
         public ApplicationTypeRepository(ApplicationDbContext db) : base(db)
         {

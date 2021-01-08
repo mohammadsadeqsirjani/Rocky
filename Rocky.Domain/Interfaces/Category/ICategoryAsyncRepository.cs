@@ -2,7 +2,7 @@
 
 namespace Rocky.Domain.Interfaces.Category
 {
-    public interface ICategoryAsyncRepository : IAsyncRepository<Entities.Category>
+    public interface ICategoryAsyncRepository : IAsyncRepository<Entities.Category, int>
     {
     }
 }

@@ -1,7 +1,12 @@
 ﻿namespace Rocky.Domain.Common
 {
-    public class BaseEntity
+    public class BaseEntity<TKey> : IBaseEntity<TKey>
     {
-        public int Id { get; set; }
+        public TKey Id { get; set; }
+    }
+
+    public class BaseEntity : BaseEntity<int>, IBaseEntity
+    {
+
     }
 }

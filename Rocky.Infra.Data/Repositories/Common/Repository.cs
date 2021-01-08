@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 
 namespace Rocky.Infra.Data.Repositories.Common
 {
-    public class Repository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity
+    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IBaseEntity<TKey>
     {
         protected readonly ApplicationDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
@@ -21,6 +21,7 @@ namespace Rocky.Infra.Data.Repositories.Common
         }
 
         public virtual IEnumerable<TEntity> Select() => DbSet.AsNoTracking();
+
         public virtual IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression) => Select(expression, null, false);
         public virtual IEnumerable<TEntity> Select(params Expression<Func<TEntity, object>>[] includes) => Select(null, null, false, includes);
         public virtual IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order) => Select(expression, order, false);
@@ -65,7 +66,7 @@ namespace Rocky.Infra.Data.Repositories.Common
             return query.FirstOrDefault();
         }
 
-        public virtual TEntity FirstOrDefault(int id) => DbSet.FirstOrDefault(p => p.Id == id);
+        public virtual TEntity FirstOrDefault(TKey id) => DbSet.FirstOrDefault(p => Equals(p.Id, id));
 
         public virtual TEntity Add(TEntity entity, bool saveAutomatically = true)
         {
@@ -93,7 +94,7 @@ namespace Rocky.Infra.Data.Repositories.Common
                 SaveChanges();
         }
 
-        public virtual void Delete(int id, bool saveAutomatically = true)
+        public virtual void Delete(TKey id, bool saveAutomatically = true)
         {
             var entity = FirstOrDefault(id);
 
@@ -102,7 +103,7 @@ namespace Rocky.Infra.Data.Repositories.Common
 
         public virtual bool Exists(Expression<Func<TEntity, bool>> predicate) => DbSet.Any(predicate);
 
-        public virtual bool Exists(int id) => Exists(p => p.Id == id);
+        public virtual bool Exists(TKey id) => Exists(p => Equals(p.Id, id));
 
         public virtual void SaveChanges() => Db.SaveChanges();
     }

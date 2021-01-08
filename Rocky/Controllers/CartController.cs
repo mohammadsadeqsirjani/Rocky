@@ -8,8 +8,8 @@ using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
+using Rocky.Domain.Interfaces.ApplicationUser;
 using Rocky.Domain.Interfaces.Product;
-using Rocky.Infra.Data.Persistence;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,7 +22,7 @@ namespace Rocky.Controllers
     [Authorize]
     public class CartController : Controller
     {
-        private ApplicationDbContext _db;
+        private readonly IApplicationUserRepository _applicationUserRepository;
         private readonly IProductRepository _productRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
@@ -30,13 +30,13 @@ namespace Rocky.Controllers
 
         [BindProperty]
         public ProductUserVm ProductUserVm { get; set; }
-        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, ApplicationDbContext db)
+        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, IApplicationUserRepository applicationUserRepository)
         {
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _mapper = mapper;
             _productRepository = productRepository;
-            _db = db;
+            _applicationUserRepository = applicationUserRepository;
         }
 
         public IActionResult Index()
@@ -71,7 +71,7 @@ namespace Rocky.Controllers
 
             ProductUserVm = new ProductUserVm
             {
-                ApplicationUser = _db.ApplicationUser.FirstOrDefault(u => u.Id == claim.Value),
+                ApplicationUser = _applicationUserRepository.FirstOrDefault(u => u.Id == claim.Value),
                 Products = productDtos
             };
 

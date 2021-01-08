@@ -2,7 +2,7 @@
 
 namespace Rocky.Domain.Interfaces.ApplicationType
 {
-    public interface IApplicationTypeAsyncRepository : IAsyncRepository<Entities.ApplicationType>
+    public interface IApplicationTypeAsyncRepository : IAsyncRepository<Entities.ApplicationType, int>
     {
     }
 }

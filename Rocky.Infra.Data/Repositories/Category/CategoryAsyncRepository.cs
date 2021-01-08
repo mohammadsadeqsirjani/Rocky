@@ -4,7 +4,7 @@ using Rocky.Infra.Data.Repositories.Common;
 
 namespace Rocky.Infra.Data.Repositories.Category
 {
-    public class CategoryAsyncRepository : AsyncRepository<Domain.Entities.Category>, ICategoryAsyncRepository
+    public class CategoryAsyncRepository : AsyncRepository<Domain.Entities.Category, int>, ICategoryAsyncRepository
     {
         public CategoryAsyncRepository(ApplicationDbContext db) : base(db)
         {

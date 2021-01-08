@@ -2,7 +2,7 @@
 
 namespace Rocky.Domain.Interfaces.ApplicationType
 {
-    public interface IApplicationTypeRepository : IRepository<Entities.ApplicationType>
+    public interface IApplicationTypeRepository : IRepository<Entities.ApplicationType, int>
     {
     }
 }

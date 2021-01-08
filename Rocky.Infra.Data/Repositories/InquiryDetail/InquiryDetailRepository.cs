@@ -4,7 +4,7 @@ using Rocky.Infra.Data.Repositories.Common;
 
 namespace Rocky.Infra.Data.Repositories.InquiryDetail
 {
-    public class InquiryDetailRepository : Repository<Domain.Entities.InquiryDetail>, IInquiryDetailRepository
+    public class InquiryDetailRepository : Repository<Domain.Entities.InquiryDetail, int>, IInquiryDetailRepository
     {
         public InquiryDetailRepository(ApplicationDbContext db) : base(db)
         {

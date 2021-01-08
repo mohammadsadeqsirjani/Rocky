@@ -2,7 +2,7 @@
 
 namespace Rocky.Domain.Interfaces.InquiryHeader
 {
-    public interface IInquiryHeaderAsyncRepository : IAsyncRepository<Entities.InquiryHeader>
+    public interface IInquiryHeaderAsyncRepository : IAsyncRepository<Entities.InquiryHeader, int>
     {
     }
 }

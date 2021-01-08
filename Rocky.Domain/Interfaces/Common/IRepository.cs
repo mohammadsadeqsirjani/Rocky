@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 
 namespace Rocky.Domain.Interfaces.Common
 {
-    public interface IRepository<TEntity> where TEntity : BaseEntity
+    public interface IRepository<TEntity, in TKey> where TEntity : IBaseEntity<TKey>
     {
         IEnumerable<TEntity> Select();
         IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression);
@@ -21,13 +21,13 @@ namespace Rocky.Domain.Interfaces.Common
         TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] includes);
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includes);
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression, bool isTracking = true, params Expression<Func<TEntity, object>>[] includes);
-        TEntity FirstOrDefault(int id);
+        TEntity FirstOrDefault(TKey id);
         TEntity Add(TEntity entity, bool saveAutomatically = true);
         void Update(TEntity entity, bool saveAutomatically = true);
         void Delete(TEntity entity, bool saveAutomatically = true);
-        void Delete(int id, bool saveAutomatically = true);
+        void Delete(TKey id, bool saveAutomatically = true);
         bool Exists(Expression<Func<TEntity, bool>> predicate);
-        bool Exists(int id);
+        bool Exists(TKey id);
         void SaveChanges();
     }
 }

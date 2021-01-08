@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Rocky.Infra.Data.Repositories.Common
 {
-    public class AsyncRepository<TEntity> : IAsyncRepository<TEntity> where TEntity : BaseEntity
+    public class AsyncRepository<TEntity, TKey> : IAsyncRepository<TEntity, TKey> where TEntity : class, IBaseEntity<TKey>
     {
         protected readonly ApplicationDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
@@ -65,7 +65,7 @@ namespace Rocky.Infra.Data.Repositories.Common
             return await query.FirstOrDefaultAsync();
         }
 
-        public virtual async Task<TEntity> FirstOrDefaultAsync(int id) => await DbSet.FirstOrDefaultAsync(p => p.Id == id);
+        public virtual async Task<TEntity> FirstOrDefaultAsync(TKey id) => await DbSet.FirstOrDefaultAsync(p => Equals(p.Id, id));
 
         public virtual async Task<TEntity> AddAsync(TEntity entity, bool saveAutomatically = true)
         {
@@ -93,7 +93,7 @@ namespace Rocky.Infra.Data.Repositories.Common
                 await SaveChangesAsync();
         }
 
-        public virtual async Task DeleteAsync(int id, bool saveAutomatically = true)
+        public virtual async Task DeleteAsync(TKey id, bool saveAutomatically = true)
         {
             var entity = await FirstOrDefaultAsync(id);
 
@@ -102,7 +102,7 @@ namespace Rocky.Infra.Data.Repositories.Common
 
         public virtual async Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> predicate) => await DbSet.AnyAsync(predicate);
 
-        public virtual async Task<bool> ExistsAsync(int id) => await ExistsAsync(p => p.Id == id);
+        public virtual async Task<bool> ExistsAsync(TKey id) => await ExistsAsync(p => Equals(p.Id, id));
 
         public virtual async Task SaveChangesAsync() => await Db.SaveChangesAsync();
     }

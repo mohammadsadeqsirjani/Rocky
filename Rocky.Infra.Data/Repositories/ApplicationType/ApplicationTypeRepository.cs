@@ -4,7 +4,7 @@ using Rocky.Infra.Data.Repositories.Common;
 
 namespace Rocky.Infra.Data.Repositories.ApplicationType
 {
-    public class ApplicationTypeAsyncRepository : AsyncRepository<Domain.Entities.ApplicationType>, IApplicationTypeAsyncRepository
+    public class ApplicationTypeAsyncRepository : AsyncRepository<Domain.Entities.ApplicationType, int>, IApplicationTypeAsyncRepository
     {
         public ApplicationTypeAsyncRepository(ApplicationDbContext db) : base(db)
         {
