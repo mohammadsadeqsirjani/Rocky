@@ -1,6 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Rocky.Domain.Common;
+﻿using Rocky.Domain.Common;
+using System.Collections.Generic;
 
 namespace Rocky.Domain.Entities
 {
@@ -16,5 +15,6 @@ namespace Rocky.Domain.Entities
 
         public virtual Category Category { get; set; }
         public virtual ApplicationType ApplicationType { get; set; }
+        public List<InquiryDetail> InquiryDetails { get; set; }
     }
 }

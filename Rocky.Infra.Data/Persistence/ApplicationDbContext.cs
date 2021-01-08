@@ -14,12 +14,16 @@ namespace Rocky.Infra.Data.Persistence
         public DbSet<ApplicationType> ApplicationType { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
+        public DbSet<InquiryHeader> InquiryHeader { get; set; }
+        public DbSet<InquiryDetail> InquiryDetail { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ApplicationTypeConfiguration());
             builder.ApplyConfiguration(new CategoryConfiguration());
             builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new InquiryHeaderConfiguration());
+            builder.ApplyConfiguration(new InquiryDetailConfiguration());
 
             base.OnModelCreating(builder);
         }

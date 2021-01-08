@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
-namespace Rocky.Infra.Data.Migrations
+namespace Rocky.Infra.Data.Persistence.Migrations
 {
     public partial class CreateDb : Migration
     {

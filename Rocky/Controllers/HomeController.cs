@@ -16,16 +16,14 @@ namespace Rocky.Controllers
     public class HomeController : Controller
     {
         private readonly IProductRepository _productRepository;
-        //private readonly ApplicationDbContext _db;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
 
-        public HomeController(IMapper mapper, IProductRepository productRepository, ICategoryRepository categoryRepository/*, ApplicationDbContext db*/)
+        public HomeController(IMapper mapper, IProductRepository productRepository, ICategoryRepository categoryRepository)
         {
             _mapper = mapper;
             _productRepository = productRepository;
             _categoryRepository = categoryRepository;
-            //_db = db;
         }
 
         public IActionResult Index()
@@ -53,7 +51,7 @@ namespace Rocky.Controllers
         {
             var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
 
-            var product = _productRepository.FirstOrDefault(p => p.Category, p => p.ApplicationType);
+            var product = _productRepository.FirstOrDefault(p => p.Id == id, p => p.Category, p => p.ApplicationType);
 
             var productDto = _mapper.Map<ProductGetDto>(product);
 
