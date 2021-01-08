@@ -3,6 +3,7 @@ using Rocky.Domain.Common;
 using Rocky.Domain.Interfaces.Common;
 using Rocky.Infra.Data.Persistence;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
@@ -20,11 +21,19 @@ namespace Rocky.Infra.Data.Repositories.Common
             DbSet = db.Set<TEntity>();
         }
 
-        public Task<IQueryable<TEntity>> SelectAsync() => Task.FromResult(DbSet.AsNoTracking());
-
-        public Task<IQueryable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order = null, Expression<Func<TEntity, object>>[] includes = null, bool isTracking = true)
+        public virtual Task<IEnumerable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression) => SelectAsync(expression, null, false);
+        public virtual Task<IEnumerable<TEntity>> SelectAsync(params Expression<Func<TEntity, object>>[] includes) => SelectAsync(null, null, false, includes);
+        public virtual Task<IEnumerable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order) => SelectAsync(expression, order, false);
+        public virtual Task<IEnumerable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order, bool isTracking) => SelectAsync(expression, order, isTracking, null);
+        public virtual Task<IEnumerable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order, params Expression<Func<TEntity, object>>[] includes) => SelectAsync(expression, order, false, includes);
+        public virtual Task<IEnumerable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includes) => SelectAsync(expression, null, false, includes);
+        public virtual async Task<IEnumerable<TEntity>> SelectAsync() => await DbSet.AsNoTracking().ToListAsync();
+        public virtual async Task<IEnumerable<TEntity>> SelectAsync(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order = null, bool isTracking = true, params Expression<Func<TEntity, object>>[] includes)
         {
-            var query = DbSet.Where(expression);
+            IQueryable<TEntity> query = DbSet;
+
+            if (expression != null)
+                query = query.Where(expression);
 
             if (includes != null)
                 query = includes.Aggregate(query, (current, include) => current.Include(include));
@@ -34,13 +43,19 @@ namespace Rocky.Infra.Data.Repositories.Common
 
             query = isTracking ? query : query.AsNoTracking();
 
-            return Task.FromResult(query);
+            return await query.ToListAsync();
 
         }
+        public virtual Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> expression) => FirstOrDefaultAsync(expression, false);
+        public virtual Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> expression, bool isTracking) => FirstOrDefaultAsync(expression, isTracking, null);
+        public virtual Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includes) => FirstOrDefaultAsync(expression, false, includes);
 
-        public async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> expression, Expression<Func<TEntity, object>>[] includes = null, bool isTracking = true)
+        public virtual async Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> expression, bool isTracking = true, params Expression<Func<TEntity, object>>[] includes)
         {
-            var query = DbSet.Where(expression);
+            IQueryable<TEntity> query = DbSet;
+
+            if (expression != null)
+                query = query.Where(expression);
 
             if (includes != null)
                 query = includes.Aggregate(query, (current, include) => current.Include(include));
@@ -50,7 +65,7 @@ namespace Rocky.Infra.Data.Repositories.Common
             return await query.FirstOrDefaultAsync();
         }
 
-        public async Task<TEntity> FirstOrDefaultAsync(int id) => await DbSet.FirstOrDefaultAsync(p => p.Id == id);
+        public virtual async Task<TEntity> FirstOrDefaultAsync(int id) => await DbSet.FirstOrDefaultAsync(p => p.Id == id);
 
         public virtual async Task<TEntity> AddAsync(TEntity entity, bool saveAutomatically = true)
         {

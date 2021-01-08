@@ -4,11 +4,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
+using Rocky.Domain.Interfaces.Product;
 using Rocky.Infra.Data.Persistence;
 using System.Collections.Generic;
 using System.IO;
@@ -22,30 +22,32 @@ namespace Rocky.Controllers
     [Authorize]
     public class CartController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private ApplicationDbContext _db;
+        private readonly IProductRepository _productRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
 
         [BindProperty]
         public ProductUserVm ProductUserVm { get; set; }
-        public CartController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper)
+        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, ApplicationDbContext db)
         {
-            _db = db;
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _mapper = mapper;
+            _productRepository = productRepository;
+            _db = db;
         }
 
         public IActionResult Index()
         {
             var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
 
-            var prodInCart = shoppingCarts.Select(i => i.ProductId).ToList();
+            var productsInCart = shoppingCarts.Select(i => i.ProductId).ToList();
 
-            IEnumerable<Product> prodList = _db.Products.Where(u => prodInCart.Contains(u.Id));
+            var products = _productRepository.Select(u => productsInCart.Contains(u.Id));
 
-            return View(prodList);
+            return View(products);
         }
 
         [HttpPost]
@@ -63,10 +65,7 @@ namespace Rocky.Controllers
             var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
             var productsInCart = shoppingCarts.Select(i => i.ProductId).ToList();
 
-            IEnumerable<Product> products = _db.Products
-                .Include(p => p.Category)
-                .Include(p => p.ApplicationType)
-                .Where(u => productsInCart.Contains(u.Id));
+            var products = _productRepository.Select(u => productsInCart.Contains(u.Id), p => p.Category, p => p.ApplicationType);
 
             var productDtos = _mapper.Map<List<ProductGetDto>>(products);
 

@@ -4,12 +4,13 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
-using Rocky.Infra.Data.Persistence;
+using Rocky.Domain.Interfaces.ApplicationType;
+using Rocky.Domain.Interfaces.Category;
+using Rocky.Domain.Interfaces.Product;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,24 +21,26 @@ namespace Rocky.Controllers
     [Authorize(Roles = WebConstant.AdminRole)]
     public class ProductController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IProductRepository _productRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IApplicationTypeRepository _applicationTypeRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IMapper _mapper;
         private readonly IValidator<ProductUpsertDto> _productUpsertDtoValidator;
 
-        public ProductController(ApplicationDbContext db, IWebHostEnvironment webHostEnvironment, IMapper mapper, IValidator<ProductUpsertDto> productUpsertDtoValidator)
+        public ProductController(IWebHostEnvironment webHostEnvironment, IMapper mapper, IValidator<ProductUpsertDto> productUpsertDtoValidator, IProductRepository productRepository, ICategoryRepository categoryRepository, IApplicationTypeRepository applicationTypeRepository)
         {
-            _db = db;
             _webHostEnvironment = webHostEnvironment;
             _mapper = mapper;
             _productUpsertDtoValidator = productUpsertDtoValidator;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            _applicationTypeRepository = applicationTypeRepository;
         }
 
         public IActionResult Index()
         {
-            IEnumerable<Product> products = _db.Products
-                .Include(u => u.Category)
-                .Include(u => u.ApplicationType);
+            var products = _productRepository.Select(p => p.Category, p => p.ApplicationType);
 
             var productDtos = _mapper.Map<IEnumerable<ProductGetDto>>(products);
 
@@ -49,22 +52,24 @@ namespace Rocky.Controllers
             var productVm = new ProductVm
             {
                 Product = new ProductUpsertDto(),
-                Categories = _db.Categories.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                }),
-                ApplicationTypes = _db.ApplicationTypes.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                })
+                Categories = _categoryRepository.Select()
+                    .Select(i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    }),
+                ApplicationTypes = _applicationTypeRepository.Select()
+                    .Select(i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    })
             };
 
             if (id == null)
                 return View(productVm);
 
-            var product = _db.Products.Find(id);
+            var product = _productRepository.FirstOrDefault(id.GetValueOrDefault());
 
             productVm.Product = _mapper.Map<ProductUpsertDto>(product);
 
@@ -82,17 +87,19 @@ namespace Rocky.Controllers
 
             if (!validationResult.IsValid)
             {
-                productVm.Categories = _db.Categories.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                });
+                productVm.Categories = _categoryRepository.Select()
+                    .Select(i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    });
 
-                productVm.ApplicationTypes = _db.ApplicationTypes.Select(i => new SelectListItem
-                {
-                    Text = i.Name,
-                    Value = i.Id.ToString()
-                });
+                productVm.ApplicationTypes = _applicationTypeRepository.Select()
+                    .Select(i => new SelectListItem
+                    {
+                        Text = i.Name,
+                        Value = i.Id.ToString()
+                    });
 
                 return View(productVm);
             }
@@ -110,16 +117,14 @@ namespace Rocky.Controllers
                 using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
                     files[0].CopyTo(fileStream);
 
-                productVm.Product.Picture = fileName + extension;
+                productMapped.Picture = fileName + extension;
 
 
-                _db.Products.Add(productMapped);
+                _productRepository.Add(productMapped, false);
             }
             else
             {
-                var product = _db.Products
-                    .AsNoTracking()
-                    .FirstOrDefault(u => u.Id == productVm.Product.Id);
+                var product = _productRepository.FirstOrDefault(u => u.Id == productVm.Product.Id, false);
 
                 if (files.Any())
                 {
@@ -135,17 +140,17 @@ namespace Rocky.Controllers
                     using (var fileStream = new FileStream(Path.Combine(upload, fileName + extension), FileMode.Create))
                         files[0].CopyTo(fileStream);
 
-                    productVm.Product.Picture = fileName + extension;
+                    productMapped.Picture = fileName + extension;
                 }
                 else
                 {
-                    productVm.Product.Picture = product.Picture;
+                    productMapped.Picture = product.Picture;
                 }
 
-                _db.Products.Update(productMapped);
+                _productRepository.Update(productMapped, false);
             }
 
-            _db.SaveChanges();
+            _productRepository.SaveChanges();
 
             return RedirectToAction(nameof(Index));
         }
@@ -155,10 +160,8 @@ namespace Rocky.Controllers
             if (id == null || id == 0)
                 return NotFound();
 
-            var product = _db.Products
-                .Include(u => u.Category)
-                .Include(u => u.ApplicationType)
-                .FirstOrDefault(u => u.Id == id);
+            var product = _productRepository.FirstOrDefault(u => u.Id == id.GetValueOrDefault(), p => p.Category,
+                p => p.ApplicationType);
 
             if (product == null)
                 return NotFound();
@@ -172,7 +175,7 @@ namespace Rocky.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var product = _db.Products.Find(id);
+            var product = _productRepository.FirstOrDefault(id.GetValueOrDefault());
 
             if (product == null)
                 return NotFound();
@@ -183,8 +186,7 @@ namespace Rocky.Controllers
             if (System.IO.File.Exists(oldFile))
                 System.IO.File.Delete(oldFile);
 
-            _db.Products.Remove(product);
-            _db.SaveChanges();
+            _productRepository.Delete(product);
 
             return RedirectToAction(nameof(Index));
         }

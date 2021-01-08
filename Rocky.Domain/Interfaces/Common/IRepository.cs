@@ -1,5 +1,6 @@
 ﻿using Rocky.Domain.Common;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -7,9 +8,19 @@ namespace Rocky.Domain.Interfaces.Common
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {
-        IQueryable<TEntity> Select();
-        IQueryable<TEntity> Select(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order = null, Expression<Func<TEntity, object>>[] include = null, bool isTracking = true);
-        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression, Expression<Func<TEntity, object>>[] include = null, bool isTracking = true);
+        IEnumerable<TEntity> Select();
+        IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression);
+        IEnumerable<TEntity> Select(params Expression<Func<TEntity, object>>[] includes);
+        IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order);
+        IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order, bool isTracking);
+        IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order, params Expression<Func<TEntity, object>>[] includes);
+        IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includes);
+        IEnumerable<TEntity> Select(Expression<Func<TEntity, bool>> expression, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> order, bool isTracking, params Expression<Func<TEntity, object>>[] includes);
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression);
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression, bool isTracking);
+        TEntity FirstOrDefault(params Expression<Func<TEntity, object>>[] includes);
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression, params Expression<Func<TEntity, object>>[] includes);
+        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> expression, bool isTracking = true, params Expression<Func<TEntity, object>>[] includes);
         TEntity FirstOrDefault(int id);
         TEntity Add(TEntity entity, bool saveAutomatically = true);
         void Update(TEntity entity, bool saveAutomatically = true);

@@ -1,12 +1,12 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Rocky.Application.Utilities;
 using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.Category;
 using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
-using Rocky.Infra.Data.Persistence;
+using Rocky.Domain.Interfaces.Category;
+using Rocky.Domain.Interfaces.Product;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -15,24 +15,28 @@ namespace Rocky.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IProductRepository _productRepository;
+        //private readonly ApplicationDbContext _db;
+        private readonly ICategoryRepository _categoryRepository;
         private readonly IMapper _mapper;
 
-        public HomeController(ApplicationDbContext db, IMapper mapper)
+        public HomeController(IMapper mapper, IProductRepository productRepository, ICategoryRepository categoryRepository/*, ApplicationDbContext db*/)
         {
-            _db = db;
             _mapper = mapper;
+            _productRepository = productRepository;
+            _categoryRepository = categoryRepository;
+            //_db = db;
         }
 
         public IActionResult Index()
         {
-            var products = _db.Products
-                .Include(u => u.Category)
-                .Include(u => u.ApplicationType);
+            var products = _productRepository.Select(p => p.Category, p => p.ApplicationType);
 
-            var productDtos = _mapper.Map<IEnumerable<ProductGetDto>>(products);
+            IEnumerable<ProductGetDto> productDtos = new List<ProductGetDto>();
+            if (products.Any())
+                productDtos = _mapper.Map<IEnumerable<ProductGetDto>>(products);
 
-            var categories = _db.Categories;
+            var categories = _categoryRepository.Select();
 
             var categoryDtos = _mapper.Map<IEnumerable<CategoryGetDto>>(categories);
 
@@ -49,10 +53,7 @@ namespace Rocky.Controllers
         {
             var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
 
-            var product = _db.Products
-                .Include(u => u.Category)
-                .Include(u => u.ApplicationType)
-                .FirstOrDefault(u => u.Id == id);
+            var product = _productRepository.FirstOrDefault(p => p.Category, p => p.ApplicationType);
 
             var productDto = _mapper.Map<ProductGetDto>(product);
 
