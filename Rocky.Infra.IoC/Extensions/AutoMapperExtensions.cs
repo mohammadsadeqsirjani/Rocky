@@ -13,6 +13,7 @@ namespace Rocky.Infra.IoC.Extensions
                 config.AddProfile(new ProductProfile());
                 config.AddProfile(new CategoryProfile());
                 config.AddProfile(new ApplicationTypeProfile());
+                config.AddProfile(new InquiryProfile());
             });
 
             var mapper = mapperConfiguration.CreateMapper();

@@ -3,9 +3,11 @@ using FluentValidation.AspNetCore;
 using Microsoft.Extensions.DependencyInjection;
 using Rocky.Application.Validators.ApplicationType;
 using Rocky.Application.Validators.Category;
+using Rocky.Application.Validators.InquiryHeader;
 using Rocky.Application.Validators.Product;
 using Rocky.Application.ViewModels.Dtos.ApplicationType;
 using Rocky.Application.ViewModels.Dtos.Category;
+using Rocky.Application.ViewModels.Dtos.InquiryHeader;
 using Rocky.Application.ViewModels.Dtos.Product;
 
 namespace Rocky.Infra.IoC.Extensions
@@ -21,6 +23,8 @@ namespace Rocky.Infra.IoC.Extensions
             services.AddTransient<IValidator<ApplicationTypeAddDto>, ApplicationTypeAddDtoValidator>();
             services.AddTransient<IValidator<ApplicationTypeEditDto>, ApplicationTypeEditDtoValidator>();
             services.AddTransient<IValidator<ProductUpsertDto>, ProductUpsertDtoValidator>();
+            services.AddTransient<IValidator<InquiryHeaderAddDto>, InquiryHeaderAddDtoValidator>();
+            services.AddTransient<IValidator<InquiryHeaderEditDto>, InquiryHeaderEditDtoValidator>();
 
             return services;
         }

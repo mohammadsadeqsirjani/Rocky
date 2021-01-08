@@ -9,6 +9,8 @@ using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.Product;
 using Rocky.Domain.Entities;
 using Rocky.Domain.Interfaces.ApplicationUser;
+using Rocky.Domain.Interfaces.InquiryDetail;
+using Rocky.Domain.Interfaces.InquiryHeader;
 using Rocky.Domain.Interfaces.Product;
 using System.Collections.Generic;
 using System.IO;
@@ -24,19 +26,23 @@ namespace Rocky.Controllers
     {
         private readonly IApplicationUserRepository _applicationUserRepository;
         private readonly IProductRepository _productRepository;
+        private readonly IInquiryHeaderRepository _inquiryHeaderRepository;
+        private readonly IInquiryDetailRepository _inquiryDetailRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
         private readonly IMapper _mapper;
 
         [BindProperty]
         public ProductUserVm ProductUserVm { get; set; }
-        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, IApplicationUserRepository applicationUserRepository)
+        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, IApplicationUserRepository applicationUserRepository, IInquiryHeaderRepository inquiryHeaderRepository, IInquiryDetailRepository inquiryDetailRepository)
         {
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
             _mapper = mapper;
             _productRepository = productRepository;
             _applicationUserRepository = applicationUserRepository;
+            _inquiryHeaderRepository = inquiryHeaderRepository;
+            _inquiryDetailRepository = inquiryDetailRepository;
         }
 
         public IActionResult Index()
@@ -83,6 +89,9 @@ namespace Rocky.Controllers
         [ActionName("Summary")]
         public async Task<IActionResult> SummaryPost(ProductUserVm productUserVm)
         {
+            var claimIdentity = User.Identity.AsOrDefault<ClaimsIdentity>();
+            var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
             const string subject = "New Inquiry";
             var pathToTemplate = $"{_webHostEnvironment.WebRootPath}{Path.DirectorySeparatorChar}templates{Path.DirectorySeparatorChar}Inquiry.html";
             string htmlBody;
@@ -98,6 +107,27 @@ namespace Rocky.Controllers
                 productUserVm.ApplicationUser.Email, productUserVm.ApplicationUser.PhoneNumber, builder);
 
             await _emailSender.SendEmailAsync(WebConstant.EmailAdmin, subject, messageBody);
+
+            var inquiryHeader = new InquiryHeader
+            {
+                ApplicationUserId = claim?.Value,
+                Fullname = productUserVm.ApplicationUser.FullName,
+                PhoneNumber = productUserVm.ApplicationUser.PhoneNumber,
+                Email = productUserVm.ApplicationUser.Email
+            };
+
+            _inquiryHeaderRepository.Add(inquiryHeader);
+
+            foreach (var productGetDto in productUserVm.Products)
+            {
+                _inquiryDetailRepository.Add(new InquiryDetail
+                {
+                    InquiryHeaderId = inquiryHeader.Id,
+                    ProductId = productGetDto.Id
+                }, false);
+            }
+
+            _inquiryDetailRepository.SaveChanges();
 
             return RedirectToAction(nameof(InquiryConfirmation));
         }

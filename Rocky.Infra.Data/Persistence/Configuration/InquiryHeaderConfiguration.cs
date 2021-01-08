@@ -23,6 +23,9 @@ namespace Rocky.Infra.Data.Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(256);
 
+            builder.Property(b => b.InquiryDate)
+                .IsRequired();
+
             builder.HasOne(b => b.ApplicationUser)
                 .WithMany(b => b.InquiryHeaders)
                 .HasForeignKey(b => b.ApplicationUserId);
