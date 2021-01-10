@@ -1,4 +1,5 @@
-﻿@model Rocky.Application.ViewModels.ProductUserVm
+﻿@using Rocky.Application.Utilities
+@model Rocky.Application.ViewModels.ProductUserVm
 
 <form method="post">
     <br />
@@ -11,7 +12,7 @@
                         Order Summary
                     </div>
                     <div class="col-6 text-right">
-                        <a class="btn btn-outline-info btn-sm">Back to Cart</a>
+                        <a asp-action="Index" class="btn btn-outline-info btn-sm">Back to Cart</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -57,6 +58,7 @@
                                         <span class="text-info">Summary:</span>
                                     </h4>
                                     <ul class="list-group mb-3">
+                                        @{ var orderTotal = 0d; }
                                         @for (var i = 0; i < Model.Products.Count(); i++)
                                         {
                             <input type="hidden" asp-for="@Model.Products[i].Id" />
@@ -64,9 +66,27 @@
                                                             <li class="list-group-item d-flex justify-content-between">
                                                                 <div>
                                                                     <h6 class="my-0">@Model.Products[i].Name</h6>
-                                                                    <small class="text-muted">Price per Sqft: $@Model.Products[i].Price</small>
+                                                                    @if (User.IsInRole(WebConstant.AdminRole))
+                                                                    {
+                                                    <small class="text-muted">Sqft: @Model.Products[i].Sqft</small> }
+                                                                    else
+                                                                    {
+                                                    <small class="text-muted">Price per Sqft: $@Model.Products[i].Price</small>}
                                                                 </div>
-                                                            </li>}
+                                                                @if (User.IsInRole(WebConstant.AdminRole))
+                                                                {
+                                                                    var price = @Model.Products[i].Price * @Model.Products[i].Sqft;
+                                                <span class="text-muted">$@price</span>}
+
+                                                            </li>orderTotal += Model.Products[i].Price * Model.Products[i].Sqft;
+                                                                        }
+                                        @if (User.IsInRole(WebConstant.AdminRole))
+                                        {
+                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                <small class="text-info">Total (USD)</small>
+                                <strong class="text-info">$@orderTotal</strong>
+                            </li>
+}
                                     </ul>
                                 </div>
                             </div>

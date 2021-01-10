@@ -67,15 +67,50 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Index")]
-        public IActionResult IndexPost()
+        public IActionResult IndexPost(IEnumerable<ProductGetDto> productGetDtos)
         {
+            var shoppingCarts = HttpContext.Session.Get<List<ShoppingCart>>(WebConstant.SessionCart);
+
+            foreach (var shoppingCart in shoppingCarts)
+            {
+                shoppingCart.Sqft = productGetDtos.FirstOrDefault(f => f.Id == shoppingCart.ProductId).Sqft;
+            }
+
+            HttpContext.Session.Set(WebConstant.SessionCart, shoppingCarts);
+
             return RedirectToAction(nameof(Summary));
         }
 
         public IActionResult Summary()
         {
-            var claimsIdentity = (ClaimsIdentity)User.Identity;
-            var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
+            ApplicationUser applicationUser;
+            if (User.IsInRole(WebConstant.AdminRole))
+            {
+                var sessionInquiryId = HttpContext.Session.Get<int>(WebConstant.SessionInquiryId);
+                if (!sessionInquiryId.IsDefault())
+                {
+                    var inquiryHeader = _inquiryHeaderRepository.FirstOrDefault(f => f.Id == sessionInquiryId);
+
+                    applicationUser = new ApplicationUser
+                    {
+                        FullName = inquiryHeader.Fullname,
+                        Email = inquiryHeader.Email,
+                        PhoneNumber = inquiryHeader.PhoneNumber
+                    };
+                }
+                else
+                {
+                    applicationUser = new ApplicationUser();
+                }
+            }
+            else
+            {
+
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
+                applicationUser = _applicationUserRepository.FirstOrDefault(f => f.Id == claim.Value);
+            }
+
             var shoppingCarts = HttpContext.Session.Get<IEnumerable<ShoppingCart>>(WebConstant.SessionCart) ?? new List<ShoppingCart>();
             var productsInCart = shoppingCarts.Select(i => i.ProductId).ToList();
 
@@ -85,9 +120,14 @@ namespace Rocky.Controllers
 
             ProductUserVm = new ProductUserVm
             {
-                ApplicationUser = _applicationUserRepository.FirstOrDefault(u => u.Id == claim.Value),
+                ApplicationUser = applicationUser,
                 Products = productDtos
             };
+
+            foreach (var product in ProductUserVm.Products)
+            {
+                product.Sqft = shoppingCarts.FirstOrDefault(p => p.ProductId == product.Id).Sqft;
+            }
 
             return View(ProductUserVm);
         }
