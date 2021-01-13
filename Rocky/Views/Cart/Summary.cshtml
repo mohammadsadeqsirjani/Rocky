@@ -51,6 +51,36 @@
                                         <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
                                     </div>
                                 </div>
+                                @if (User.IsInRole(WebConstant.AdminRole))
+                                {
+                    <div class="row my-1">
+                        <div class="col-3">
+                            <label>Street Address</label>
+                        </div>
+                        <div class="col-9">
+                            <input asp-for="ApplicationUser.StreetAddress" type="text" class="form-control" />
+                            <span asp-validation-for="ApplicationUser.StreetAddress" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                                    <div class="row my-1">
+                                        <div class="col-3">
+                                            <label>City</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <input asp-for="ApplicationUser.City" type="text" class="form-control" />
+                                            <span asp-validation-for="ApplicationUser.City" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                                    <div class="row my-1">
+                                                        <div class="col-3">
+                                                            <label>Postal Code</label>
+                                                        </div>
+                                                        <div class="col-9">
+                                                            <input asp-for="ApplicationUser.PostalCode" type="text" class="form-control" />
+                                                            <span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
+                                                        </div>
+                                                    </div>}
                             </div>
                             <div class="col-12 col-lg-5 row">
                                 <div class="col-12">
@@ -62,16 +92,16 @@
                                         @for (var i = 0; i < Model.Products.Count(); i++)
                                         {
                             <input type="hidden" asp-for="@Model.Products[i].Id" />
-                                            <input type="hidden" asp-for="@Model.Products[i].Name" />
+                                            <inwput type="hidden" asp-for="@Model.Products[i].Name" />
                                                             <li class="list-group-item d-flex justify-content-between">
                                                                 <div>
                                                                     <h6 class="my-0">@Model.Products[i].Name</h6>
                                                                     @if (User.IsInRole(WebConstant.AdminRole))
                                                                     {
                                                     <small class="text-muted">Sqft: @Model.Products[i].Sqft</small> }
-                                                                    else
-                                                                    {
-                                                    <small class="text-muted">Price per Sqft: $@Model.Products[i].Price</small>}
+                                                else
+                                                {
+                                <small class="text-muted">Price per Sqft: $@Model.Products[i].Price</small>}
                                                                 </div>
                                                                 @if (User.IsInRole(WebConstant.AdminRole))
                                                                 {
@@ -96,7 +126,12 @@
                 <div class="card-footer">
                     <div class="row">
                         <div class="col-12 col-md-5 offset-md-7">
-                            <button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>
+                            @if (User.IsInRole(WebConstant.AdminRole))
+                            {
+                <button type="submit" class="btn btn-success form-control">Submit Order</button> }
+            else
+            {
+<button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>}
                         </div>
                     </div>
                 </div>

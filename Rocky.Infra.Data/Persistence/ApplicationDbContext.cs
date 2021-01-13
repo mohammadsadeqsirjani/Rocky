@@ -16,6 +16,8 @@ namespace Rocky.Infra.Data.Persistence
         public DbSet<ApplicationUser> ApplicationUser { get; set; }
         public DbSet<InquiryHeader> InquiryHeader { get; set; }
         public DbSet<InquiryDetail> InquiryDetail { get; set; }
+        public DbSet<OrderHeader> OrderHeader { get; set; }
+        public DbSet<OrderDetail> OrderDetail { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -24,6 +26,8 @@ namespace Rocky.Infra.Data.Persistence
             builder.ApplyConfiguration(new ProductConfiguration());
             builder.ApplyConfiguration(new InquiryHeaderConfiguration());
             builder.ApplyConfiguration(new InquiryDetailConfiguration());
+            builder.ApplyConfiguration(new OrderHeaderConfiguration());
+            builder.ApplyConfiguration(new OrderDetailConfiguration());
 
             base.OnModelCreating(builder);
         }

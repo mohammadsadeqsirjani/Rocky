@@ -18,12 +18,14 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using FluentValidation;
 
 namespace Rocky.Controllers
 {
     [Authorize]
     public class CartController : Controller
     {
+        private readonly IValidator<ApplicationUser> _applicationUserValidator;
         private readonly IApplicationUserRepository _applicationUserRepository;
         private readonly IProductRepository _productRepository;
         private readonly IInquiryHeaderRepository _inquiryHeaderRepository;
@@ -34,7 +36,7 @@ namespace Rocky.Controllers
 
         [BindProperty]
         public ProductUserVm ProductUserVm { get; set; }
-        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, IApplicationUserRepository applicationUserRepository, IInquiryHeaderRepository inquiryHeaderRepository, IInquiryDetailRepository inquiryDetailRepository)
+        public CartController(IWebHostEnvironment webHostEnvironment, IEmailSender emailSender, IMapper mapper, IProductRepository productRepository, IApplicationUserRepository applicationUserRepository, IInquiryHeaderRepository inquiryHeaderRepository, IInquiryDetailRepository inquiryDetailRepository, IValidator<ApplicationUser> applicationUserValidator)
         {
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
@@ -43,6 +45,7 @@ namespace Rocky.Controllers
             _applicationUserRepository = applicationUserRepository;
             _inquiryHeaderRepository = inquiryHeaderRepository;
             _inquiryDetailRepository = inquiryDetailRepository;
+            _applicationUserValidator = applicationUserValidator;
         }
 
         public IActionResult Index()
@@ -137,6 +140,11 @@ namespace Rocky.Controllers
         [ActionName("Summary")]
         public async Task<IActionResult> SummaryPost(ProductUserVm productUserVm)
         {
+            var validationUser = await _applicationUserValidator.ValidateAsync(productUserVm.ApplicationUser);
+
+            if (!validationUser.IsValid)
+                return View(productUserVm);
+
             var claimIdentity = User.Identity.AsOrDefault<ClaimsIdentity>();
             var claim = claimIdentity.FindFirst(ClaimTypes.NameIdentifier);
 

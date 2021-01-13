@@ -16,5 +16,6 @@ namespace Rocky.Domain.Entities
         public virtual Category Category { get; set; }
         public virtual ApplicationType ApplicationType { get; set; }
         public List<InquiryDetail> InquiryDetails { get; set; }
+        public List<OrderDetail> OrderDetails { get; set; }
     }
 }
