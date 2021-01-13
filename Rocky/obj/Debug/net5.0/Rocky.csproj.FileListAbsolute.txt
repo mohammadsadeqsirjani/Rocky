@@ -1510,3 +1510,5 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.EntityFrameworkCo
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Index.cshtml.g.cs
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Razor\Views\Inquiry\Details.cshtml.g.cs
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Razor\Views\Shared\_Notifications.cshtml.g.cs
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Scrutor.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Scrutor.AspNetCore.dll

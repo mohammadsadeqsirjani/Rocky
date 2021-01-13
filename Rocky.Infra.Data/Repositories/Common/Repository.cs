@@ -2,6 +2,7 @@
 using Rocky.Domain.Common;
 using Rocky.Domain.Interfaces.Common;
 using Rocky.Infra.Data.Persistence;
+using Rocky.Infra.Data.Scrutor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ using System.Linq.Expressions;
 
 namespace Rocky.Infra.Data.Repositories.Common
 {
-    public class Repository<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IBaseEntity<TKey>
+    public class Repository<TEntity, TKey> : IScoped, IRepository<TEntity, TKey> where TEntity : class, IBaseEntity<TKey>
     {
         protected readonly ApplicationDbContext Db;
         protected readonly DbSet<TEntity> DbSet;
