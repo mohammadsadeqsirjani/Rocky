@@ -8,10 +8,10 @@ namespace Rocky.Domain.Entities
     {
         public string CreatedBy { get; set; }
         public DateTime OrderDate { get; set; }
-        public DateTime ShippingDate { get; set; }
+        public DateTime? ShippingDate { get; set; }
         public double TotalOrderPrice { get; set; }
         public string OrderStatus { get; set; }
-        public DateTime PaymentDate { get; set; }
+        public DateTime? PaymentDate { get; set; }
         public string TransactionId { get; set; }
         public string PhoneNumber { get; set; }
         public string StreetAddress { get; set; }

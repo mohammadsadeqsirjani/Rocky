@@ -12,14 +12,12 @@ namespace Rocky.Infra.Data.Persistence.Configuration
             builder.ToTable("OrderHeader");
 
             builder.Property(b => b.CreatedBy)
-                .IsRequired()
-                .HasMaxLength(36);
+                .IsRequired();
 
             builder.Property(b => b.OrderDate)
                 .IsRequired();
 
-            builder.Property(b => b.ShippingDate)
-                .IsRequired();
+            builder.Property(b => b.ShippingDate);
 
             builder.Property(b => b.TotalOrderPrice)
                 .IsRequired();
@@ -28,11 +26,9 @@ namespace Rocky.Infra.Data.Persistence.Configuration
                 .IsRequired()
                 .HasMaxLength(50);
 
-            builder.Property(b => b.PaymentDate)
-                .IsRequired();
+            builder.Property(b => b.PaymentDate);
 
             builder.Property(b => b.TransactionId)
-                .IsRequired()
                 .HasMaxLength(50);
 
             builder.Property(b => b.PhoneNumber)

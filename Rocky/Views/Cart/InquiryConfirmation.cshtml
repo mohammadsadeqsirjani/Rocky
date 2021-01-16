@@ -1,8 +1,14 @@
-﻿<div class="text-center">
+﻿@model Rocky.Application.ViewModels.Dtos.OrderHeader.OrderHeaderGetDto;
 
-    <h1 class="text-info">Inquiry Confirmation</h1>
+<div class="text-center">
+    @if (Model.IsNotNull())
+    {
+<h1 class="text-info">Order Created</h1>
+                <p>Order #@Model.Id has been created successfully</p> }
+            else
+            {
+<h1 class="text-info">Inquiry Confirmation</h1>
 
-    <p>We have recieved your inquiry and someone from our team will contact you shortly!</p>
-
-    <img src="/images/patio.jpg" width="80%" />
+                <p>We have received your inquiry and someone from our team will contact you shortly!</p>}
+    <img src="/images/patio.jpg" width="80%" alt="" />
 </div>

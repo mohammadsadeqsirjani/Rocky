@@ -12,6 +12,6 @@ namespace Rocky.Application.ViewModels
         }
 
         public ApplicationUser ApplicationUser { get; set; }
-        public IList<ProductGetDto> Products { get; set; }
+        public List<ProductGetDto> Products { get; set; }
     }
 }

@@ -17,6 +17,9 @@ namespace Rocky.Infra.Data.Persistence.Configuration
             builder.Property(b => b.ProductId)
                 .IsRequired();
 
+            builder.Property(b => b.Sqft)
+                .IsRequired();
+
             builder.HasOne(b => b.OrderHeader)
                 .WithMany(b => b.OrderDetails)
                 .HasForeignKey(b => b.OrderHeaderId);

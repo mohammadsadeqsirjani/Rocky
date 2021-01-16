@@ -37,12 +37,14 @@ namespace Rocky.Infra.IoC.Extensions
                 i.FromApplicationDependencies()
                     .AddClasses(c => c.AssignableTo<ITransient>())
                     .AsImplementedInterfaces()
-                    .WithTransientLifetime()
-                    
+                    .WithTransientLifetime();
+
+                i.FromApplicationDependencies()
                     .AddClasses(c => c.AssignableTo<IScoped>())
                     .AsImplementedInterfaces()
-                    .WithScopedLifetime()
-                    
+                    .WithScopedLifetime();
+
+                i.FromApplicationDependencies()
                     .AddClasses(c => c.AssignableTo<ISingleton>())
                     .AsImplementedInterfaces()
                     .WithSingletonLifetime();
