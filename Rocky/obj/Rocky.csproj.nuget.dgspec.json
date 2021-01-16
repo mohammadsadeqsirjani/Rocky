@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[10.1.1, )"
             },
+            "Braintree": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[9.3.0, )"

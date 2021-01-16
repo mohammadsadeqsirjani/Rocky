@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "p8vpchBsHPQePU/CFNS9Vm/aB9IyjIpmE4w7mDJHNbMkxpxc+a1QyTbnbc54z820B/7R8Ixo165oaPF+GbxLUQ==",
+  "dgSpecHash": "Kg2eb1uKdx02cjyJWVL8sr83Gp6C4o1/qY89cipJaakGvGNubIANS77ww8PRMTEUuQauDe2+07afVQKoRBJfiA==",
   "success": true,
   "projectFilePath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\pc\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.0\\automapper.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\braintree\\5.2.0\\braintree.5.2.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\cactus.blade.core\\1.2.5\\cactus.blade.core.1.2.5.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\fluentvalidation\\9.3.0\\fluentvalidation.9.3.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\fluentvalidation.aspnetcore\\9.3.0\\fluentvalidation.aspnetcore.9.3.0.nupkg.sha512",
@@ -168,7 +169,9 @@
     "C:\\Users\\pc\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Users\\pc\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Users\\pc\\.nuget\\packages\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\system.xml.xpath\\4.3.0\\system.xml.xpath.4.3.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\system.xml.xpath.xmldocument\\4.3.0\\system.xml.xpath.xmldocument.4.3.0.nupkg.sha512"
   ],
   "logs": []
 }

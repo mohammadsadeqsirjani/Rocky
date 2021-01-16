@@ -1,4 +1,4 @@
-﻿namespace Rocky.Application.Utilities
+﻿namespace Rocky.Application.Utilities.MailJet
 {
     public class MailJetSettings
     {
