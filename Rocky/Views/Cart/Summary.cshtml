@@ -1,7 +1,7 @@
 ﻿@using Rocky.Application.Utilities
 @model Rocky.Application.ViewModels.ProductUserVm
 
-<form method="post">
+<form method="post" id="payment-form">
     <br />
     <div class="backgroundWhiteBorder">
         <div class="container">
@@ -53,15 +53,15 @@
                                 </div>
                                 @if (User.IsInRole(WebConstant.AdminRole))
                                 {
-                    <div class="row my-1">
-                        <div class="col-3">
-                            <label>Street Address</label>
-                        </div>
-                        <div class="col-9">
-                            <input asp-for="ApplicationUser.StreetAddress" type="text" class="form-control" />
-                            <span asp-validation-for="ApplicationUser.StreetAddress" class="text-danger"></span>
-                        </div>
-                    </div>
+                                    <div class="row my-1">
+                                        <div class="col-3">
+                                            <label>Street Address</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <input asp-for="ApplicationUser.StreetAddress" type="text" class="form-control" />
+                                            <span asp-validation-for="ApplicationUser.StreetAddress" class="text-danger"></span>
+                                        </div>
+                                    </div>
 
                                     <div class="row my-1">
                                         <div class="col-3">
@@ -73,24 +73,24 @@
                                         </div>
                                     </div>
 
-                                                    <div class="row my-1">
-                                                        <div class="col-3">
-                                                            <label>State</label>
-                                                        </div>
-                                                        <div class="col-9">
-                                                            <input asp-for="ApplicationUser.State" type="text" class="form-control" />
-                                                            <span asp-validation-for="ApplicationUser.State" class="text-danger"></span>
-                                                        </div>
-                                                    </div>
-                                                                    <div class="row my-1">
-                                                                        <div class="col-3">
-                                                                            <label>Postal Code</label>
-                                                                        </div>
-                                                                        <div class="col-9">
-                                                                            <input asp-for="ApplicationUser.PostalCode" type="text" class="form-control" />
-                                                                            <span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
-                                                                        </div>
-                                                                    </div>}
+                                    <div class="row my-1">
+                                        <div class="col-3">
+                                            <label>State</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <input asp-for="ApplicationUser.State" type="text" class="form-control" />
+                                            <span asp-validation-for="ApplicationUser.State" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="row my-1">
+                                        <div class="col-3">
+                                            <label>Postal Code</label>
+                                        </div>
+                                        <div class="col-9">
+                                            <input asp-for="ApplicationUser.PostalCode" type="text" class="form-control" />
+                                            <span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
+                                        </div>
+                                    </div>}
                             </div>
                             <div class="col-12 col-lg-5 row">
                                 <div class="col-12">
@@ -101,36 +101,46 @@
                                         @{ var orderTotal = 0d; }
                                         @for (var i = 0; i < Model.Products.Count(); i++)
                                         {
-                            <input type="hidden" asp-for="@Model.Products[i].Id" />
+                                            <input type="hidden" asp-for="@Model.Products[i].Id" />
                                             <input type="hidden" asp-for="@Model.Products[i].Name" />
-                                                            <input type="hidden" asp-for="@Model.Products[i].Price" />
-                                                                            <input type="hidden" asp-for="@Model.Products[i].Sqft" />
-                                                                                            <li class="list-group-item d-flex justify-content-between">
-                                                                                                <div>
-                                                                                                    <h6 class="my-0">@Model.Products[i].Name</h6>
-                                                                                                    @if (User.IsInRole(WebConstant.AdminRole))
-                                                                                                    {
-                                                                                    <small class="text-muted">Sqft: @Model.Products[i].Sqft</small> }
-                                                                                else
-                                                                                {
-                                                                <small class="text-muted">Price per Sqft: $@Model.Products[i].Price</small>}
-                                                                                                </div>
-                                                                                                @if (User.IsInRole(WebConstant.AdminRole))
-                                                                                                {
-                                                                                                    var price = @Model.Products[i].Price * @Model.Products[i].Sqft;
-                                                                                <span class="text-muted">$@price</span>}
+                                            <input type="hidden" asp-for="@Model.Products[i].Price" />
+                                            <input type="hidden" asp-for="@Model.Products[i].Sqft" />
+                                            <li class="list-group-item d-flex justify-content-between">
+                                                <div>
+                                                    <h6 class="my-0">@Model.Products[i].Name</h6>
+                                                    @if (User.IsInRole(WebConstant.AdminRole))
+                                                    {
+                                                        <small class="text-muted">Sqft: @Model.Products[i].Sqft</small> }
+                                                    else
+                                                    {
+                                                        <small class="text-muted">Price per Sqft: $@Model.Products[i].Price</small>}
+                                                </div>
+                                                @if (User.IsInRole(WebConstant.AdminRole))
+                                                {
+                                                    var price = @Model.Products[i].Price * @Model.Products[i].Sqft;
+                                                    <span class="text-muted">$@price</span>}
 
-                                                                                            </li>orderTotal += Model.Products[i].Price * Model.Products[i].Sqft;
-                                                                                                        }
+                                            </li>
+                                            orderTotal += Model.Products[i].Price * Model.Products[i].Sqft;
+                                        }
                                         @if (User.IsInRole(WebConstant.AdminRole))
                                         {
-                            <li class="list-group-item d-flex justify-content-between bg-light">
-                                <small class="text-info">Total (USD)</small>
-                                <strong class="text-info">$@orderTotal</strong>
-                            </li>
-}
+                                            <li class="list-group-item d-flex justify-content-between bg-light">
+                                                <small class="text-info">Total (USD)</small>
+                                                <strong class="text-info">$@orderTotal</strong>
+                                            </li>
+                                        }
                                     </ul>
                                 </div>
+                                @if (User.IsInRole(WebConstant.AdminRole))
+                                {
+                                    <div class="col-12">
+                                        <div class="container">
+                                            <div id="dropin-container"></div>
+                                            <input id="nonce" name="payment_method_nonce" type="hidden" />
+                                        </div>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -140,10 +150,10 @@
                         <div class="col-12 col-md-5 offset-md-7">
                             @if (User.IsInRole(WebConstant.AdminRole))
                             {
-                <button type="submit" class="btn btn-success form-control">Submit Order</button> }
-            else
-            {
-<button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>}
+                                <button type="submit" class="btn btn-success form-control">Submit Order</button> }
+                            else
+                            {
+                                <button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>}
                         </div>
                     </div>
                 </div>
@@ -155,4 +165,53 @@
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+    <script>
+        var client_token = "@ViewBag.ClientToken";
+        var form = document.querySelector('#payment-form');
+        braintree.dropin.create({
+            authorization: client_token,
+              container: '#dropin-container'
+            }, function (createErr, instance) {
+                    form.addEventListener('submit', function () {
+                        event.preventDefault();
+                        //Add the nonce to the form and submit
+                                instance.requestPaymentMethod(function (err, payload) {
+                                    // Submit payload.nonce to your server
+                                    document.querySelector('#nonce').value = payload.nonce;
+                                    form.submit();
+                                });
+                            });
+        });
+        function validateInput() {
+            var app_name = document.getElementById("ApplicationUser_FullName").value;
+            var app_phone = document.getElementById("ApplicationUser_PhoneNumber").value;
+            var app_email = document.getElementById("ApplicationUser_Email").value;
+            if (app_name.toString() === '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter Full Name!'
+                });
+                return false;
+            }
+            if (app_phone.toString() === '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter Phone Number!'
+                });
+                return false;
+            }
+            if (app_email.toString() === '') {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Please enter Email!'
+                });
+                return false;
+            }
+            return true;
+        }
+    </script>
 }

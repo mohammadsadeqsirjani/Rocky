@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Rocky.Application.Utilities;
 using Rocky.Application.Utilities.BrainTree;
@@ -8,7 +9,7 @@ namespace Rocky.Infra.IoC.Extensions
 {
     public static class ServiceExtensions
     {
-        public static IServiceCollection RegisterService(this IServiceCollection services, Microsoft.Extensions.Configuration.IConfiguration configuration)
+        public static IServiceCollection RegisterService(this IServiceCollection services, IConfiguration configuration)
         {
             //services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
             //services.AddScoped(typeof(IAsyncRepository<,>), typeof(AsyncRepository<,>));
@@ -31,11 +32,10 @@ namespace Rocky.Infra.IoC.Extensions
             //services.AddScoped<IApplicationUserRepository, ApplicationUserRepository>();
             //services.AddScoped<IApplicationUserAsyncRepository, ApplicationUserAsyncRepository>();
 
-            services.Configure<BrainTreeGateway>(configuration.GetSection("BrainTreeS"));
+            services.Configure<BrainTreeSetting>(configuration.GetSection("BrainTree"));
 
             services.AddTransient<IEmailSender, EmailSender>();
-            services.AddSingleton<IBrainTreeGateway, BrainTreeGateway>();
-
+            services.AddSingleton<IBrainTreeGateway, BrainTree>();
 
             services.Scan(i =>
             {
