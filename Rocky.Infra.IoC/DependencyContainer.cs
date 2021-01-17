@@ -28,6 +28,8 @@ namespace Rocky.Infra.IoC
                 .AddDefaultTokenProviders().AddDefaultUI()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddExternalLoginProvider();
+
             return services;
         }
 

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "SWPBl8RuqVQsywiRL3JCwC9QeWku6fon0VoYsLj5dHOna/Q0Y61c8k1sARfwZKPQB0smXNs6OzICUxPW92Mn9g==",
+  "dgSpecHash": "c8iaNznPABN37BprU0jom8Z+6TYDBUQfLkQPi8xLYimyX8nGUFJe4s96FbcX1jD6yKVkiUG+I7aVIVJOk29BdQ==",
   "success": true,
   "projectFilePath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.IoC\\Rocky.Infra.IoC.csproj",
   "expectedPackageFiles": [
@@ -14,6 +14,8 @@
     "C:\\Users\\pc\\.nuget\\packages\\mailjet.api\\2.0.1\\mailjet.api.2.0.1.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authentication.facebook\\5.0.2\\microsoft.aspnetcore.authentication.facebook.5.0.2.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\5.0.2\\microsoft.aspnetcore.authentication.google.5.0.2.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authorization\\2.2.0\\microsoft.aspnetcore.authorization.2.2.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.authorization.policy\\2.2.0\\microsoft.aspnetcore.authorization.policy.2.2.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.2\\microsoft.aspnetcore.cryptography.internal.5.0.2.nupkg.sha512",

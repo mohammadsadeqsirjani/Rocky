@@ -2028,3 +2028,5 @@ F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Braintree.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
