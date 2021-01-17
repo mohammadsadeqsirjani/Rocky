@@ -119,6 +119,11 @@ namespace Rocky.Controllers
                 {
                     applicationUser = new ApplicationUser();
                 }
+
+                if (User.IsInRole(WebConstant.AdminRole))
+                {
+
+                }
             }
             else
             {
