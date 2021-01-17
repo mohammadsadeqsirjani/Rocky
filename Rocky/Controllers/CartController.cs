@@ -222,6 +222,19 @@ namespace Rocky.Controllers
 
                 var result = await _brainTreeGateway.GetGateway().Transaction.SaleAsync(request);
 
+                if (result.Target.ProcessorResponseText == Enum.GetName(OrderStatus.Approved))
+                {
+                    orderHeader.OrderStatus = Enum.GetName(OrderStatus.Approved);
+                    orderHeader.TransactionId = result.Target.Id;
+                    orderHeader.PaymentDate = DateTime.Now;
+                }
+                else
+                {
+                    orderHeader.OrderStatus = Enum.GetName(OrderStatus.Cancelled);
+                }
+
+                _orderHeaderRepository.Update(orderHeader);
+
                 TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 
                 return RedirectToAction(nameof(InquiryConfirmation), new { orderHeader.Id });
@@ -291,7 +304,7 @@ namespace Rocky.Controllers
         {
             HttpContext.Session.Clear();
 
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "Home");
         }
 
         public IActionResult InquiryConfirmation(int id = 0)

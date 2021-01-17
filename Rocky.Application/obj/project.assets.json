@@ -5820,19 +5820,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Lenovo\\.nuget\\packages\\": {}
+    "C:\\Users\\pc\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Code\\C#\\Rocky\\Rocky.Application\\Rocky.Application.csproj",
+      "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj",
       "projectName": "Rocky.Application",
-      "projectPath": "F:\\Code\\C#\\Rocky\\Rocky.Application\\Rocky.Application.csproj",
-      "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-      "outputPath": "F:\\Code\\C#\\Rocky\\Rocky.Application\\obj\\",
+      "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\Rocky.Application.csproj",
+      "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+      "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Application\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5846,8 +5846,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj": {
-              "projectPath": "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj"
+            "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj": {
+              "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj"
             }
           }
         }
@@ -5913,7 +5913,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }

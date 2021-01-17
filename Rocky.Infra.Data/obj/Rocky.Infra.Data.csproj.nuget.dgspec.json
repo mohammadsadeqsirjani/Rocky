@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "F:\\Code\\C#\\Rocky\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj": {}
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj": {}
   },
   "projects": {
-    "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj": {
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj",
+        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj",
         "projectName": "Rocky.Domain",
-        "projectPath": "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "F:\\Code\\C#\\Rocky\\Rocky.Domain\\obj\\",
+        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,21 +60,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "F:\\Code\\C#\\Rocky\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj": {
+    "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "F:\\Code\\C#\\Rocky\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj",
+        "projectUniqueName": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj",
         "projectName": "Rocky.Infra.Data",
-        "projectPath": "F:\\Code\\C#\\Rocky\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj",
-        "packagesPath": "C:\\Users\\Lenovo\\.nuget\\packages\\",
-        "outputPath": "F:\\Code\\C#\\Rocky\\Rocky.Infra.Data\\obj\\",
+        "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\Rocky.Infra.Data.csproj",
+        "packagesPath": "C:\\Users\\pc\\.nuget\\packages\\",
+        "outputPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Infra.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Lenovo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\pc\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -88,8 +88,8 @@
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj": {
-                "projectPath": "F:\\Code\\C#\\Rocky\\Rocky.Domain\\Rocky.Domain.csproj"
+              "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj": {
+                "projectPath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky.Domain\\Rocky.Domain.csproj"
               }
             }
           }
@@ -138,7 +138,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

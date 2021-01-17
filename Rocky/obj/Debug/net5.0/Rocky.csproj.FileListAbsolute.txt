@@ -1238,7 +1238,6 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Data.DataSetExt
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Data.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.Contracts.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.Debug.dll
-D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.DiagnosticSource.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.EventLog.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.FileVersionInfo.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.Process.dll
@@ -2026,3 +2025,6 @@ F:\Code\C#\Rocky\Rocky\obj\Debug\net5.0\Rocky.genruntimeconfig.cache
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\Braintree.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Braintree.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
