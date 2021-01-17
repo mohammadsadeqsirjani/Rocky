@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Braintree;
 using FluentValidation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
@@ -6,6 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Rocky.Application.Utilities;
+using Rocky.Application.Utilities.BrainTree;
 using Rocky.Application.Utilities.Enums;
 using Rocky.Application.ViewModels;
 using Rocky.Application.ViewModels.Dtos.OrderHeader;
@@ -39,6 +41,7 @@ namespace Rocky.Controllers
         private readonly IInquiryDetailRepository _inquiryDetailRepository;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IEmailSender _emailSender;
+        private readonly IBrainTreeGateway _brainTreeGateway;
         private readonly IMapper _mapper;
 
         [BindProperty]
@@ -48,7 +51,7 @@ namespace Rocky.Controllers
             IProductRepository productRepository, IApplicationUserRepository applicationUserRepository,
             IInquiryHeaderRepository inquiryHeaderRepository, IInquiryDetailRepository inquiryDetailRepository,
             IValidator<ApplicationUser> applicationUserValidator, IOrderHeaderRepository orderHeaderRepository,
-            IOrderDetailRepository orderDetailRepository)
+            IOrderDetailRepository orderDetailRepository, IBrainTreeGateway brainTreeGateway)
         {
             _webHostEnvironment = webHostEnvironment;
             _emailSender = emailSender;
@@ -60,6 +63,7 @@ namespace Rocky.Controllers
             _applicationUserValidator = applicationUserValidator;
             _orderHeaderRepository = orderHeaderRepository;
             _orderDetailRepository = orderDetailRepository;
+            _brainTreeGateway = brainTreeGateway;
         }
 
         public IActionResult Index()
@@ -122,7 +126,9 @@ namespace Rocky.Controllers
 
                 if (User.IsInRole(WebConstant.AdminRole))
                 {
-
+                    var gateway = _brainTreeGateway.GetGateway();
+                    var clientToken = gateway.ClientToken.Generate();
+                    ViewBag.ClientToken = clientToken;
                 }
             }
             else
@@ -157,7 +163,7 @@ namespace Rocky.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ActionName("Summary")]
-        public async Task<IActionResult> SummaryPost(ProductUserVm productUserVm)
+        public async Task<IActionResult> SummaryPost(IFormCollection collection, ProductUserVm productUserVm)
         {
             var validationUser = await _applicationUserValidator.ValidateAsync(productUserVm.ApplicationUser);
 
@@ -200,6 +206,21 @@ namespace Rocky.Controllers
                     _orderDetailRepository.Add(orderDetail, false);
 
                 _orderDetailRepository.SaveChanges();
+
+                var nonceFromClient = collection["payment_method_nonce"];
+
+                var request = new TransactionRequest
+                {
+                    Amount = orderHeader.TotalOrderPrice.ToDecimal(),
+                    PaymentMethodNonce = nonceFromClient,
+                    OrderId = orderHeader.Id.ToString(),
+                    Options = new TransactionOptionsRequest
+                    {
+                        SubmitForSettlement = true
+                    }
+                };
+
+                var result = await _brainTreeGateway.GetGateway().Transaction.SaleAsync(request);
 
                 TempData[WebConstant.Succeed] = WebConstant.MissionComplete;
 

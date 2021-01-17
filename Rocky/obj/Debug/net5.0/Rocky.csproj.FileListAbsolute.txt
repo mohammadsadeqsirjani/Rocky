@@ -1666,7 +1666,6 @@ F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Data.DataSetExtensions.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Data.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.Contracts.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.Debug.dll
-F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.DiagnosticSource.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.EventLog.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.FileVersionInfo.dll
 F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\refs\System.Diagnostics.Process.dll
@@ -2024,3 +2023,6 @@ F:\Code\C#\Rocky\Rocky\obj\Debug\net5.0\Rocky.dll
 F:\Code\C#\Rocky\Rocky\obj\Debug\net5.0\ref\Rocky.dll
 F:\Code\C#\Rocky\Rocky\obj\Debug\net5.0\Rocky.pdb
 F:\Code\C#\Rocky\Rocky\obj\Debug\net5.0\Rocky.genruntimeconfig.cache
+F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\Braintree.dll
+F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+F:\Code\C#\Rocky\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll

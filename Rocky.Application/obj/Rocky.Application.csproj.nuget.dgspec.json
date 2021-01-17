@@ -48,6 +48,10 @@
               "target": "Package",
               "version": "[10.1.1, )"
             },
+            "Braintree": {
+              "target": "Package",
+              "version": "[5.2.0, )"
+            },
             "FluentValidation": {
               "target": "Package",
               "version": "[9.3.0, )"
@@ -133,7 +137,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[5.0.1, )"
+              "version": "[5.0.2, )"
             }
           },
           "imports": [

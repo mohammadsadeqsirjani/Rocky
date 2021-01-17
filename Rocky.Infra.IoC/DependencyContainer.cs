@@ -19,7 +19,7 @@ namespace Rocky.Infra.IoC
             services.RegisterAutoMapper()
                 .AddDistributedMemoryCache()
                 .RegisterSession()
-                .RegisterService()
+                .RegisterService(configuration)
                 .RegisterValidation(builder)
                 .AddDbContext<ApplicationDbContext>(options =>
                     options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
