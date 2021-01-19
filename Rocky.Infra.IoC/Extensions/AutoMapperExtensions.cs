@@ -16,6 +16,7 @@ namespace Rocky.Infra.IoC.Extensions
                 config.AddProfile(new InquiryHeaderProfile());
                 config.AddProfile(new InquiryDetailProfile());
                 config.AddProfile(new OrderHeaderProfile());
+                config.AddProfile(new OrderDetailProfile());
             });
 
             var mapper = mapperConfiguration.CreateMapper();

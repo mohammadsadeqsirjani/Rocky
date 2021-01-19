@@ -6,14 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Rocky.Application.Utilities;
+using Rocky.Domain.Entities;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
 using System.Threading.Tasks;
-using Rocky.Application.Utilities;
-using Rocky.Domain.Entities;
 
 namespace Rocky.Areas.Identity.Pages.Account
 {
@@ -124,15 +124,20 @@ namespace Rocky.Areas.Identity.Pages.Account
                 {
                     return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl });
                 }
-
-                if (!User.IsInRole(WebConstant.AdminRole))
-                {
-                    await _signInManager.SignInAsync(user, false);
-                }
                 else
                 {
-                    return RedirectToAction("Index");
+                    if (!User.IsInRole(WebConstant.AdminRole))
+                    {
+                        await _signInManager.SignInAsync(user, false);
+                    }
+                    else
+                    {
+                        TempData[WebConstant.Succeed] = $"{user.FullName} has been registered";
+
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
+
                 return LocalRedirect(returnUrl);
             }
             foreach (var error in result.Errors)

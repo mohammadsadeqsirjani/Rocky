@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "oMif6F418FQDSL5oc+az69/6Z/JAyqap19eC+bG/fY4Q4HGGrIeKzvDxDeqUaqupBcRULQcspsRb7cnDen92Wg==",
+  "dgSpecHash": "WGb+hQr3vuTFUJQX2dLfYjPoNpjAxo4/pfV2suhCd2vCWCKSsBc6/8m0JL4zSCsfsF1GCQSCJAH7m7T0QmXFUg==",
   "success": true,
   "projectFilePath": "D:\\Job\\Code\\C#\\Demo\\Rocky.sln\\Rocky\\Rocky.csproj",
   "expectedPackageFiles": [
@@ -114,6 +114,8 @@
     "C:\\Users\\pc\\.nuget\\packages\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.ubuntu.16.10-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\scrutor\\3.3.0\\scrutor.3.3.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\scrutor.aspnetcore\\1.0.0\\scrutor.aspnetcore.1.0.0.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\syncfusion.ej2.aspnet.core\\18.4.0.34\\syncfusion.ej2.aspnet.core.18.4.0.34.nupkg.sha512",
+    "C:\\Users\\pc\\.nuget\\packages\\syncfusion.licensing\\18.4.0.34\\syncfusion.licensing.18.4.0.34.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.appcontext\\4.3.0\\system.appcontext.4.3.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.buffers\\4.5.0\\system.buffers.4.5.0.nupkg.sha512",
     "C:\\Users\\pc\\.nuget\\packages\\system.collections\\4.3.0\\system.collections.4.3.0.nupkg.sha512",

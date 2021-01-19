@@ -30,7 +30,6 @@
                                     </div>
                                     <div class="col-9">
                                         <input asp-for="ApplicationUser.FullName" type="text" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.FullName" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -39,7 +38,6 @@
                                     </div>
                                     <div class="col-9">
                                         <input asp-for="ApplicationUser.PhoneNumber" type="text" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.PhoneNumber" class="text-danger"></span>
                                     </div>
                                 </div>
                                 <div class="row my-1">
@@ -48,7 +46,6 @@
                                     </div>
                                     <div class="col-9">
                                         <input asp-for="ApplicationUser.Email" type="text" class="form-control" />
-                                        <span asp-validation-for="ApplicationUser.Email" class="text-danger"></span>
                                     </div>
                                 </div>
                                 @if (User.IsInRole(WebConstant.AdminRole))
@@ -59,7 +56,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="ApplicationUser.StreetAddress" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.StreetAddress" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -69,7 +65,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="ApplicationUser.City" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.City" class="text-danger"></span>
                                         </div>
                                     </div>
 
@@ -79,7 +74,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="ApplicationUser.State" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.State" class="text-danger"></span>
                                         </div>
                                     </div>
                                     <div class="row my-1">
@@ -88,7 +82,6 @@
                                         </div>
                                         <div class="col-9">
                                             <input asp-for="ApplicationUser.PostalCode" type="text" class="form-control" />
-                                            <span asp-validation-for="ApplicationUser.PostalCode" class="text-danger"></span>
                                         </div>
                                     </div>}
                             </div>
@@ -150,10 +143,12 @@
                         <div class="col-12 col-md-5 offset-md-7">
                             @if (User.IsInRole(WebConstant.AdminRole))
                             {
-                                <button type="submit" class="btn btn-success form-control">Submit Order</button> }
+                                <button type="submit" class="btn btn-success form-control" onclick="return validateInput()">Submit Order</button>
+                            }
                             else
                             {
-                                <button type="submit" class="btn btn-primary form-control">Submit Inquiry</button>}
+                                <button type="submit" class="btn btn-primary form-control" onclick="return validateInput()">Submit Inquiry</button>
+                            }
                         </div>
                     </div>
                 </div>

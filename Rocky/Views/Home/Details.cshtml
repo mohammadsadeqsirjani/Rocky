@@ -56,12 +56,12 @@
                         <div class="col-12 col-md-6 ">
                             @if (Model.ExistsInCart)
                             {
-                <a asp-action="RemoveFromCart" asp-route-id="@Model.Product.Id" class="btn btn-warning btn-square form-control btn-lg" style="height:50px;">Remove from Cart</a> }
+                <a asp-action="RemoveFromCart" asp-route-id="@Model.Product.Id" class="btn btn-warning btn-square form-control btn-lg" style="height: 50px;">Remove from Cart</a> }
             else
             {
 
 
-<button type="submit" asp-route-id="@Model.Product.Id" class="btn btn-info form-control btn-lg" style="height:50px;">Add to Cart</button>}
+<button type="submit" asp-route-id="@Model.Product.Id" class="btn btn-info form-control btn-lg" style="height: 50px;">Add to Cart</button>}
                         </div>
                     </div>
                 </div>
@@ -69,3 +69,7 @@
         </div>
     </form>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

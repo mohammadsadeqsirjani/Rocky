@@ -1,5 +1,6 @@
 ﻿using Rocky.Application.ViewModels.Dtos.Common;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace Rocky.Application.ViewModels.Dtos.Product
 {
@@ -12,6 +13,8 @@ namespace Rocky.Application.ViewModels.Dtos.Product
         public string Picture { get; set; }
         public int CategoryId { get; set; }
         public int ApplicationTypeId { get; set; }
+
+        [Range(1, 100)]
         public int Sqft { get; set; }
 
         [DisplayName("Caegogry Type")]

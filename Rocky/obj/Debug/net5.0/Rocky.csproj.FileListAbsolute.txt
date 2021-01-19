@@ -2030,3 +2030,7 @@ D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\System.Diagnostics.Diagnost
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Facebook.dll
 D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.Google.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Syncfusion.EJ2.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\bin\Debug\net5.0\Syncfusion.Licensing.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Razor\Views\Order\Index.cshtml.g.cs
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky\obj\Debug\net5.0\Razor\Views\Order\Details.cshtml.g.cs

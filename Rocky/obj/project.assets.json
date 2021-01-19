@@ -1661,6 +1661,28 @@
           "lib/netstandard2.0/Scrutor.AspNetCore.dll": {}
         }
       },
+      "Syncfusion.EJ2.AspNet.Core/18.4.0.34": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "[11.0.2, 13.0.0)",
+          "Syncfusion.Licensing": "18.4.0.34"
+        },
+        "compile": {
+          "lib/netstandard2.1/Syncfusion.EJ2.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/Syncfusion.EJ2.dll": {}
+        }
+      },
+      "Syncfusion.Licensing/18.4.0.34": {
+        "type": "package",
+        "compile": {
+          "lib/netcoreapp5.0/Syncfusion.Licensing.dll": {}
+        },
+        "runtime": {
+          "lib/netcoreapp5.0/Syncfusion.Licensing.dll": {}
+        }
+      },
       "System.AppContext/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -5783,6 +5805,50 @@
         "lib/netstandard2.0/Scrutor.AspNetCore.dll",
         "scrutor.aspnetcore.1.0.0.nupkg.sha512",
         "scrutor.aspnetcore.nuspec"
+      ]
+    },
+    "Syncfusion.EJ2.AspNet.Core/18.4.0.34": {
+      "sha512": "YgLE+S9VNb0x3amhJ6sruka9S3FA1OpVvT2YQXjhrVKOrofvYB2dH5V8clvG764HNHrYWiW6KX42OzR6QzcXQg==",
+      "type": "package",
+      "path": "syncfusion.ej2.aspnet.core/18.4.0.34",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net451/Syncfusion.EJ2.dll",
+        "lib/netstandard1.6/Syncfusion.EJ2.dll",
+        "lib/netstandard2.0/Syncfusion.EJ2.dll",
+        "lib/netstandard2.1/Syncfusion.EJ2.dll",
+        "syncfusion.ej2.aspnet.core.18.4.0.34.nupkg.sha512",
+        "syncfusion.ej2.aspnet.core.nuspec"
+      ]
+    },
+    "Syncfusion.Licensing/18.4.0.34": {
+      "sha512": "a8BuTU3KGTAMs2h0j3TCTazYLh9tWLfiFH0BWOmtqnJSwIJu1hR9yhNtblT9/4QgWFFTzyJ/yp4udWVtj/QL+g==",
+      "type": "package",
+      "path": "syncfusion.licensing/18.4.0.34",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10.0/Syncfusion.Licensing.dll",
+        "lib/MonoAndroid90/Syncfusion.Licensing.dll",
+        "lib/Xamarin.Mac/Syncfusion.Licensing.dll",
+        "lib/Xamarin.iOS10/Syncfusion.Licensing.dll",
+        "lib/net20/Syncfusion.Licensing.dll",
+        "lib/net35/Syncfusion.Licensing.dll",
+        "lib/net40/Syncfusion.Licensing.dll",
+        "lib/net45/Syncfusion.Licensing.dll",
+        "lib/net451/Syncfusion.Licensing.dll",
+        "lib/net46/Syncfusion.Licensing.dll",
+        "lib/netcoreapp3.1/Syncfusion.Licensing.dll",
+        "lib/netcoreapp5.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.0/Syncfusion.Licensing.dll",
+        "lib/netstandard1.2/Syncfusion.Licensing.dll",
+        "lib/netstandard1.4/Syncfusion.Licensing.dll",
+        "lib/netstandard2.0/Syncfusion.Licensing.dll",
+        "lib/portable-win+net45+wp80+win81+wpa81/Syncfusion.Licensing.dll",
+        "lib/uap10.0/Syncfusion.Licensing.dll",
+        "syncfusion.licensing.18.4.0.34.nupkg.sha512",
+        "syncfusion.licensing.nuspec"
       ]
     },
     "System.AppContext/4.3.0": {
@@ -10216,7 +10282,8 @@
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.1",
       "Rocky.Application >= 1.0.0",
       "Rocky.Domain >= 1.0.0",
-      "Rocky.Infra.IoC >= 1.0.0"
+      "Rocky.Infra.IoC >= 1.0.0",
+      "Syncfusion.EJ2.AspNet.Core >= 18.4.0.34"
     ]
   },
   "packageFolders": {
@@ -10293,6 +10360,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[5.0.1, )"
+          },
+          "Syncfusion.EJ2.AspNet.Core": {
+            "target": "Package",
+            "version": "[18.4.0.34, )"
           }
         },
         "imports": [
