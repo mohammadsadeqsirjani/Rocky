@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Rocky.Application.Utilities;
+using Rocky.Domain.Entities;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using System.Text;
@@ -47,6 +49,27 @@ namespace Rocky.Areas.Identity.Pages.Account
             [Required]
             [EmailAddress]
             public string Email { get; set; }
+
+            //[Required]
+            //[StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            //[DataType(DataType.Password)]
+            //[Display(Name = "Password")]
+            //public string Password { get; set; }
+
+
+            //[Required]
+            //[Display(Name = "Confirm password")]
+            //[Compare("Password", ErrorMessage = "The password and confirmation  password do not match")]
+            //public string ConfirmPassword { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 2)]
+            public string Fullname { get; set; }
+
+            [Required]
+            [Display(Name = "Phone number")]
+            [DataType(DataType.PhoneNumber)]
+            public string PhoneNumber { get; set; }
         }
 
         public IActionResult OnGetAsync()
@@ -93,7 +116,8 @@ namespace Rocky.Areas.Identity.Pages.Account
             {
                 Input = new InputModel
                 {
-                    Email = info.Principal.FindFirstValue(ClaimTypes.Email)
+                    Email = info.Principal.FindFirstValue(ClaimTypes.Email),
+                    Fullname = info.Principal.FindFirstValue(ClaimTypes.Name)
                 };
             }
             return Page();
@@ -111,7 +135,13 @@ namespace Rocky.Areas.Identity.Pages.Account
 
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = Input.Email, Email = Input.Email };
+                var user = new ApplicationUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FullName = Input.Fullname,
+                    PhoneNumber = Input.PhoneNumber
+                };
 
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
@@ -119,6 +149,8 @@ namespace Rocky.Areas.Identity.Pages.Account
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
+                        await _userManager.AddToRoleAsync(user, WebConstant.CustomerRole);
+
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
 
                         var userId = await _userManager.GetUserIdAsync(user);

@@ -89,6 +89,7 @@ namespace Rocky.Areas.Identity.Pages.Account
                 return RedirectToPage("./Lockout");
             }
 
+            ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
             return Page();
         }
