@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Rocky.Application\Rocky.Application.csproj" />
     <ProjectReference Include="..\Rocky.Domain\Rocky.Domain.csproj" />
   </ItemGroup>
 

@@ -1622,6 +1622,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore": "5.0.2",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.2",
+          "Rocky.Application": "1.0.0",
           "Rocky.Domain": "1.0.0"
         },
         "runtime": {

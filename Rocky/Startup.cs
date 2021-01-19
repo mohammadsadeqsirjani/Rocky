@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Rocky.Infra.Data.Persistence.Initialize;
 using Rocky.Infra.IoC;
 
 namespace Rocky
@@ -20,9 +21,9 @@ namespace Rocky
             services.RegisterServices(Configuration);
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IDatabaseInitializer db)
         {
-            app.EnableMiddleWares(env);
+            app.EnableMiddleWares(env, db);
         }
     }
 }

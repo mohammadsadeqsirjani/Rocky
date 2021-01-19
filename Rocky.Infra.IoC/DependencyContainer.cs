@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Rocky.Infra.Data.Persistence;
+using Rocky.Infra.Data.Persistence.Initialize;
 using Rocky.Infra.IoC.Extensions;
 
 namespace Rocky.Infra.IoC
@@ -33,7 +34,7 @@ namespace Rocky.Infra.IoC
             return services;
         }
 
-        public static IApplicationBuilder EnableMiddleWares(this IApplicationBuilder app, IWebHostEnvironment env)
+        public static IApplicationBuilder EnableMiddleWares(this IApplicationBuilder app, IWebHostEnvironment env, IDatabaseInitializer db)
         {
             if (env.IsDevelopment())
             {
@@ -49,15 +50,18 @@ namespace Rocky.Infra.IoC
                 .UseStaticFiles()
                 .UseRouting()
                 .UseAuthentication()
-                .UseAuthorization()
-                .UseSession()
-                .UseEndpoints(endpoints =>
-                {
-                    endpoints.MapRazorPages();
-                    endpoints.MapControllerRoute(
-                        "default",
-                        "{controller=Home}/{action=Index}/{id?}");
-                });
+                .UseAuthorization();
+
+            db.Initialize();
+
+            app.UseSession()
+            .UseEndpoints(endpoints =>
+            {
+                endpoints.MapRazorPages();
+                endpoints.MapControllerRoute(
+                    "default",
+                    "{controller=Home}/{action=Index}/{id?}");
+            });
 
             return app;
         }

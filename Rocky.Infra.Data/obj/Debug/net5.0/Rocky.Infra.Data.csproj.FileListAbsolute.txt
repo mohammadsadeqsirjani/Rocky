@@ -46,3 +46,5 @@ F:\Code\C#\Rocky\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.dll
 F:\Code\C#\Rocky\Rocky.Infra.Data\obj\Debug\net5.0\ref\Rocky.Infra.Data.dll
 F:\Code\C#\Rocky\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.pdb
 F:\Code\C#\Rocky\Rocky.Infra.Data\obj\Debug\net5.0\Rocky.Infra.Data.genruntimeconfig.cache
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\bin\Debug\net5.0\Rocky.Application.dll
+D:\Job\Code\C#\Demo\Rocky.sln\Rocky.Infra.Data\bin\Debug\net5.0\Rocky.Application.pdb
